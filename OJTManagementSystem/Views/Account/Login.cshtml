@@ -1,0 +1,58 @@
+﻿@model OJTManagementSystem.ViewModels.ExpenseLoginUserViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card animate-in">
+            <div class="card-header text-center">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </div>
+
+            <div class="card-body">
+                <form asp-controller="Account" asp-action="Login" method="post">
+
+                    <div class="mb-4">
+                        <label asp-for="Email" class="form-label">
+                            <i class="bi bi-envelope"></i> Email
+                        </label>
+                        <input asp-for="Email"
+                               class="form-control"
+                               type="email"
+                               placeholder="you@example.com" />
+                        <span asp-validation-for="Email" class="text-danger fw-bold"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label">
+                            <i class="bi bi-lock"></i> Password
+                        </label>
+                        <input asp-for="Password"
+                               class="form-control"
+                               type="password"
+                               placeholder="••••••••" />
+                        <span asp-validation-for="Password" class="text-danger fw-bold"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-door-open-fill"></i> Login
+                        </button>
+
+                        <a asp-controller="Account"
+                           asp-action="Register"
+                           class="btn btn-secondary">
+                            <i class="bi bi-person-plus"></i> Create Account
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
