@@ -17,6 +17,7 @@
         public DateTime EndDate { get; set; }
         public int? SupervisorId { get; set; }
         public string SupervisorName { get; set; }
+        public string SupervisorUserId { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

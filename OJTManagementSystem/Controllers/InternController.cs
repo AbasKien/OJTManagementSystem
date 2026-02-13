@@ -94,11 +94,12 @@ namespace OJTManagementSystem.Controllers
             try
             {
                 var user = await _userManager.GetUserAsync(User);
+                var intern = await _internService.GetInternByUserIdAsync(user.Id);
 
                 // Get group chats
                 var groupChats = await _groupChatService.GetUserGroupChatsAsync(user.Id);
 
-                // Get private conversations
+                // Get existing private conversations
                 var conversations = await _chatService.GetUserConversationsAsync(user.Id);
                 var privateChats = new List<PrivateChatViewModel>();
 
@@ -108,7 +109,6 @@ namespace OJTManagementSystem.Controllers
                     var otherUser = await _userManager.FindByIdAsync(otherUserId);
                     var messages = await _chatService.GetMessagesByConversationIdAsync(conv.Id);
 
-                    // Determine role
                     var roles = await _userManager.GetRolesAsync(otherUser);
                     var role = roles.FirstOrDefault() ?? "User";
 
@@ -129,6 +129,27 @@ namespace OJTManagementSystem.Controllers
                             IsRead = false
                         }).ToList()
                     });
+                }
+
+                // ✅ AUTO-INJECT SUPERVISOR: Show supervisor in private chats
+                // as soon as they're assigned, even with 0 messages exchanged.
+                if (intern != null && !string.IsNullOrEmpty(intern.SupervisorUserId))
+                {
+                    bool alreadyInList = privateChats.Any(p => p.OtherUserId == intern.SupervisorUserId);
+                    if (!alreadyInList)
+                    {
+                        var supervisorUser = await _userManager.FindByIdAsync(intern.SupervisorUserId);
+                        if (supervisorUser != null)
+                        {
+                            privateChats.Insert(0, new PrivateChatViewModel
+                            {
+                                OtherUserId = intern.SupervisorUserId,
+                                OtherUserName = supervisorUser.FullName,
+                                OtherUserRole = "Supervisor",
+                                Messages = new List<ChatMessageViewModel>()
+                            });
+                        }
+                    }
                 }
 
                 var model = new AllChatsViewModel

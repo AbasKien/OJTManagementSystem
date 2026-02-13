@@ -253,10 +253,13 @@ namespace OJTManagementSystem.Services
                 EndDate = intern.EndDate,
                 SupervisorId = intern.SupervisorId,
                 SupervisorName = intern.Supervisor?.User?.FullName,
+                SupervisorUserId = intern.Supervisor?.UserId,  // ✅ ADD THIS LINE
                 IsActive = intern.IsActive,
                 CreatedAt = intern.CreatedAt,
                 UpdatedAt = intern.UpdatedAt
             };
-        }
+        
+
+    }
     }
 }

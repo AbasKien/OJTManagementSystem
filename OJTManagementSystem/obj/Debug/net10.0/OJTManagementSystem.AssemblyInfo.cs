@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OJTManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a6385adbc34ff9c9639ef199ca889893e43b9a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f64ece62b2dfffaa19f32f514e32dee2b4415df")]
 [assembly: System.Reflection.AssemblyProductAttribute("OJTManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OJTManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -298,6 +298,7 @@ namespace OJTManagementSystem.Helpers
                 EndDate = intern.EndDate,
                 SupervisorId = intern.SupervisorId,
                 SupervisorName = intern.Supervisor?.User?.FullName ?? "Unassigned",
+                SupervisorUserId = intern.Supervisor?.UserId,
                 IsActive = intern.IsActive,
                 CreatedAt = intern.CreatedAt,
                 UpdatedAt = intern.UpdatedAt

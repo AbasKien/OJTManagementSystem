@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\intern\\allchats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\views\\intern\\allchats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\internservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\services\\internservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\interfaces\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\interfaces\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\controllers\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\controllers\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\controllers\\supervisorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\controllers\\supervisorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\helpers\\mappinghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\helpers\\mappinghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\viewmodel\\internviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\viewmodel\\internviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\supervisor\\evaluateintern.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\views\\supervisor\\evaluateintern.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -29,26 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\intern\\groupchat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\views\\intern\\groupchat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\intern\\allchats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\views\\intern\\allchats.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\controllers\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\controllers\\interncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\helpers\\mappinghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\helpers\\mappinghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\controllers\\supervisorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\controllers\\supervisorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\viewmodel\\groupchatviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\viewmodel\\groupchatviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\supervisor\\creategroupchat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -113,14 +129,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\certificateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\services\\certificateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\internservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\services\\internservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\internrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\interfaces\\ichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -193,10 +201,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\views\\intern\\viewdtrs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\views\\intern\\viewdtrs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\viewmodel\\internviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\viewmodel\\internviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\models\\supervisor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -293,10 +297,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\dtos\\approveleaverequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\dtos\\approveleaverequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\interfaces\\ichatmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -519,10 +519,6 @@
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\interfaces\\ileaverequestrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\interfaces\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\interfaces\\iinternrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|c:\\users\\huawei\\source\\repos\\ojtmanagementsystem\\ojtmanagementsystem\\repository\\interfaces\\ievaluationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0DBE0BD-987A-6F95-4BD8-7A616E90AF61}|OJTManagementSystem\\OJTManagementSystem.csproj|solutionrelative:ojtmanagementsystem\\repository\\interfaces\\ievaluationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -602,7 +598,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Program.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Program.cs",
@@ -611,8 +607,7 @@
               "ViewState": "AgIAAO0AAAAAAAAAAIBJwMUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-06T02:19:19.706Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -620,33 +615,124 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GroupChat.cshtml",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
-              "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAowFkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:04:27.832Z",
+              "DocumentIndex": 4,
+              "Title": "InternController.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\InternController.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Controllers\\InternController.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\InternController.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Controllers\\InternController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAowIgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T07:46:12.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "AllChats.cshtml",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
-              "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAowCQAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:04:06.624Z",
+              "Title": "SupervisorController.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\SupervisorController.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Controllers\\SupervisorController.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\SupervisorController.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Controllers\\SupervisorController.cs",
+              "ViewState": "AgIAAKgDAAAAAAAAAAAmwOgDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T07:46:31.704Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "InternService.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\InternService.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\InternService.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\InternService.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Services\\InternService.cs",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAUwAQBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T07:51:46.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InternRepository.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\InternRepository.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\InternRepository.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\InternRepository.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Repository\\InternRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwDIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T07:49:42.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IInternRepository.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T07:49:33.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AllChats.cshtml",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
+              "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-11T06:03:13.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MappingHelper.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\MappingHelper.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Helpers\\MappingHelper.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\MappingHelper.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Helpers\\MappingHelper.cs",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAtwCQBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T05:28:07.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Internviewmodel.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
+              "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwBEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T05:25:44.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Chatservice.cs",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Chatservice.cs",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Chatservice.cs",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Chatservice.cs",
+              "RelativeToolTip": "OJTManagementSystem\\Services\\Chatservice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T01:30:41.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Account\\Login.cshtml",
@@ -654,12 +740,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Account\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:08:56.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:08:56.455Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Shared\\_Layout.cshtml",
@@ -667,25 +752,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAO0AAAAAAAAAAAAgwDABAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-06T03:05:14.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T03:05:14.259Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Viewevaluationdetails.cshtml",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
-              "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T02:11:09.49Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "Evaluateintern.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Evaluateintern.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Evaluateintern.cshtml",
@@ -693,12 +764,47 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Evaluateintern.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:10:41.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:10:41.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
+              "Title": "Viewevaluationdetails.cshtml",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
+              "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewevaluationdetails.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-12T02:11:09.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GroupChat.cshtml",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
+              "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\GroupChat.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAowFkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-11T06:04:27.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AllChats.cshtml",
+              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
+              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
+              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
+              "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\AllChats.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowCQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-11T06:04:06.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "GroupChat.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\GroupChat.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\GroupChat.cshtml",
@@ -706,77 +812,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\GroupChat.cshtml",
               "ViewState": "AgIAACsAAAAAAAAAAAAgwG4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:03:37.299Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T06:03:37.299Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AllChats.cshtml",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
-              "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\AllChats.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAgwE8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:03:13.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "InternController.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\InternController.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Controllers\\InternController.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\InternController.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Controllers\\InternController.cs",
-              "ViewState": "AgIAACABAAAAAAAAAAApwCMBAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:46:12.67Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MappingHelper.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\MappingHelper.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Helpers\\MappingHelper.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\MappingHelper.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Helpers\\MappingHelper.cs",
-              "ViewState": "AgIAAB8CAAAAAAAAAAApwCsCAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:28:07.36Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SupervisorController.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\SupervisorController.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Controllers\\SupervisorController.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\SupervisorController.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Controllers\\SupervisorController.cs",
-              "ViewState": "AgIAALMDAAAAAAAAAAAQwPQDAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:46:31.704Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Groupchatviewmodels.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Groupchatviewmodels.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\Groupchatviewmodels.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Groupchatviewmodels.cs",
-              "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Groupchatviewmodels.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAmwDsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:58:51.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "CreateGroupChat.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\CreateGroupChat.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\CreateGroupChat.cshtml",
@@ -784,12 +824,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\CreateGroupChat.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAgwBwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:04:43.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T06:04:43.231Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "ChatMessageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\ChatMessageViewModel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\ChatMessageViewModel.cs",
@@ -797,12 +836,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\ChatMessageViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAQwA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:26:09.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T05:26:09.883Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "PdfGeneratorHelper.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\PdfGeneratorHelper.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Helpers\\PdfGeneratorHelper.cs",
@@ -810,12 +848,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Helpers\\PdfGeneratorHelper.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAAAGgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T15:11:18.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T15:11:18.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "Messagelistviewmodel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Messagelistviewmodel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\Messagelistviewmodel.cs",
@@ -823,12 +860,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Messagelistviewmodel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T03:05:59.365Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T03:05:59.365Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Accessdenied.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Shared\\Accessdenied.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Shared\\Accessdenied.cshtml",
@@ -836,12 +872,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Shared\\Accessdenied.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T01:13:17.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T01:13:17.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "Manageinterns.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Manageinterns.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Manageinterns.cshtml",
@@ -849,12 +884,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Manageinterns.cshtml",
               "ViewState": "AgIAAFgAAAAAAAAAAAAIwHMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:04:33.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:04:33.686Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "Messages.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Messages.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Messages.cshtml",
@@ -862,12 +896,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Messages.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:04:16.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T06:04:16.694Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "Viewcertificate.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Viewcertificate.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Viewcertificate.cshtml",
@@ -875,12 +908,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Viewcertificate.cshtml",
               "ViewState": "AgIAAFwAAAAAAAAAAAAIwGAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T02:22:58.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T02:22:58.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "Viewpendingdtrs.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Viewpendingdtrs.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Viewpendingdtrs.cshtml",
@@ -888,12 +920,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Viewpendingdtrs.cshtml",
               "ViewState": "AgIAACMAAAAAAAAAAAAqwCgAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:08:50.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:08:50.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "Viewpendingleaves.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Viewpendingleaves.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Viewpendingleaves.cshtml",
@@ -901,12 +932,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Viewpendingleaves.cshtml",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:10:09.087Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:10:09.087Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\_ViewImports.cshtml",
@@ -914,12 +944,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-06T03:08:40.135Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T03:08:40.135Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\_ViewStart.cshtml",
@@ -927,12 +956,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\_ViewStart.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T05:33:36.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T05:33:36.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "Groupchatdtos.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\Groupchatdtos.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\Groupchatdtos.cs",
@@ -940,12 +968,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\Groupchatdtos.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:58:33.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T05:58:33.895Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "Viewcertificate.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewcertificate.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewcertificate.cshtml",
@@ -953,12 +980,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewcertificate.cshtml",
               "ViewState": "AgIAAFAAAAAAAAAAAAAIwIcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T06:47:58.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T06:47:58.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "ICertificateService.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Interfaces\\ICertificateService.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Interfaces\\ICertificateService.cs",
@@ -966,12 +992,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\ICertificateService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:31:18.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:31:18.707Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 31,
               "Title": "Certificateservice.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Certificateservice.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Certificateservice.cs",
@@ -979,38 +1004,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Certificateservice.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAIwHAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:29:50.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:29:50.638Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "InternService.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\InternService.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\InternService.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\InternService.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Services\\InternService.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAIwJwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:51:46.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "InternRepository.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\InternRepository.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\InternRepository.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\InternRepository.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Repository\\InternRepository.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCAAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:49:42.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "IChatService.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Interfaces\\IChatService.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Interfaces\\IChatService.cs",
@@ -1018,12 +1016,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\IChatService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:31:31.867Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:31:31.867Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "Viewevaluation.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewevaluation.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewevaluation.cshtml",
@@ -1031,12 +1028,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewevaluation.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:08:04.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:08:04.108Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "Viewleaverequests.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewleaverequests.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewleaverequests.cshtml",
@@ -1044,12 +1040,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewleaverequests.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:07:26.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:07:26.369Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Controllers\\AccountController.cs",
@@ -1057,12 +1052,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Controllers\\AccountController.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAnwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:45:57.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:45:57.907Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "OJTManagementSystem\\wwwroot\\css\\site.css",
@@ -1070,12 +1064,11 @@
               "RelativeToolTip": "OJTManagementSystem\\wwwroot\\css\\site.css",
               "ViewState": "AgIAADAFAAAAAAAAAAAiwEYFAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-06T03:04:11.537Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T03:04:11.537Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "LeaveRequestRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\LeaveRequestRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\LeaveRequestRepository.cs",
@@ -1083,12 +1076,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\LeaveRequestRepository.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAYwCUAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:37.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:37.393Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "EvaluationRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\EvaluationRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\EvaluationRepository.cs",
@@ -1096,12 +1088,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\EvaluationRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:22.645Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:22.645Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\appsettings.json",
               "RelativeDocumentMoniker": "OJTManagementSystem\\appsettings.json",
@@ -1109,12 +1100,11 @@
               "RelativeToolTip": "OJTManagementSystem\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-08T05:53:08.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T05:53:08.554Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "Emailsettings.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\Emailsettings.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Helpers\\Emailsettings.cs",
@@ -1122,12 +1112,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Helpers\\Emailsettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:56:13.102Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:56:13.102Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Dashboard.cshtml",
@@ -1135,12 +1124,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Dashboard.cshtml",
               "ViewState": "AgIAAFQAAAAAAAAAAAAgwHYAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:10:32.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:10:32.47Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "CreateGroupChat.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\CreateGroupChat.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\CreateGroupChat.cshtml",
@@ -1148,12 +1136,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\CreateGroupChat.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T06:03:51.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T06:03:51.545Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "Certificate.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Certificate.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Certificate.cshtml",
@@ -1161,12 +1148,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Certificate.cshtml",
               "ViewState": "AgIAAAkAAAAAAAAAAIBJwEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-09T00:43:19.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T00:43:19.874Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Supervisor\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Supervisor\\Dashboard.cshtml",
@@ -1174,12 +1160,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Dashboard.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:16:39.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:16:39.896Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "Messages.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Messages.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Messages.cshtml",
@@ -1187,12 +1172,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Messages.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAIBJwC0AAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-09T00:42:42.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T00:42:42.617Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "Requestleave.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Requestleave.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Requestleave.cshtml",
@@ -1200,12 +1184,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Requestleave.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T01:51:17.134Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:51:17.134Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "Submitdtr.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Submitdtr.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Submitdtr.cshtml",
@@ -1213,12 +1196,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Submitdtr.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T01:49:43.877Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:49:43.877Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "Viewdtrs.cshtml",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Views\\Intern\\Viewdtrs.cshtml",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Views\\Intern\\Viewdtrs.cshtml",
@@ -1226,25 +1208,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\Viewdtrs.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T01:50:24.994Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:50:24.994Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "Internviewmodel.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
-              "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Internviewmodel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:25:44.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "Supervisor.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\Supervisor.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\Supervisor.cs",
@@ -1252,12 +1220,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Supervisor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:19.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:19.873Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "Intern.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\Intern.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\Intern.cs",
@@ -1265,12 +1232,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Intern.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAmwCUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:11.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:11.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\ApplicationUser.cs",
@@ -1278,12 +1244,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\ApplicationUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:04.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:04.12Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "ApproveDtrDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\ApproveDtrDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\ApproveDtrDto.cs",
@@ -1291,12 +1256,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\ApproveDtrDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:45:24.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:45:24.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "DailyTimeRecord.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\DailyTimeRecord.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\DailyTimeRecord.cs",
@@ -1304,12 +1268,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\DailyTimeRecord.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAUwCMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:27.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:27.19Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "Approvedtrviewmodel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\Approvedtrviewmodel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\Approvedtrviewmodel.cs",
@@ -1317,12 +1280,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Approvedtrviewmodel.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAA3wCEAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T00:52:39.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T00:52:39.101Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 146,
+              "DocumentIndex": 145,
               "Title": "20260212010121_k.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Migrations\\20260212010121_k.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Migrations\\20260212010121_k.cs",
@@ -1330,12 +1292,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Migrations\\20260212010121_k.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-12T01:01:21.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T01:01:21.188Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "ChatMessage.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\ChatMessage.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\ChatMessage.cs",
@@ -1343,12 +1304,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\ChatMessage.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:48.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:48.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "Applicationdbcontext.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Data\\Applicationdbcontext.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Data\\Applicationdbcontext.cs",
@@ -1356,12 +1316,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Data\\Applicationdbcontext.cs",
               "ViewState": "AgIAAGIAAAAAAAAAAIBJwHYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T02:06:48.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T02:06:48.739Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "Groupchatservice.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Groupchatservice.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Groupchatservice.cs",
@@ -1369,12 +1328,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Groupchatservice.cs",
               "ViewState": "AgIAAJcAAAAAAAAAAIBQwLUAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:57:15.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T05:57:15.745Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "Igroupchatrepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\Igroupchatrepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\Igroupchatrepository.cs",
@@ -1382,12 +1340,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\Igroupchatrepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:56:17.162Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T05:56:17.162Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "GroupChatRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\GroupChatRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\GroupChatRepository.cs",
@@ -1395,12 +1352,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\GroupChatRepository.cs",
               "ViewState": "AgIAAE4AAAAAAAAAAIBJwHAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T06:20:04.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T06:20:04.761Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "Genericrepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Genericrepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Genericrepository.cs",
@@ -1408,12 +1364,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Genericrepository.cs",
               "ViewState": "AgIAABIAAAAAAAAAAADwv0EAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:10:01.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:10:01.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "IGenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\IGenericRepository.cs",
@@ -1421,12 +1376,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IGenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:41:48.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:41:48.189Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "SendChatMessageDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\SendChatMessageDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\SendChatMessageDto.cs",
@@ -1434,12 +1388,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\SendChatMessageDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:46:13.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:46:13.967Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "SubmitEvaluationDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\SubmitEvaluationDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\SubmitEvaluationDto.cs",
@@ -1447,12 +1400,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\SubmitEvaluationDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:45:34.162Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:45:34.162Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "SubmitLeaveRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\SubmitLeaveRequestDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\SubmitLeaveRequestDto.cs",
@@ -1460,12 +1412,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\SubmitLeaveRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:45:50.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:45:50.8Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "SubmitDtrDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\SubmitDtrDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\SubmitDtrDto.cs",
@@ -1473,12 +1424,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\SubmitDtrDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T06:49:50.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T06:49:50.405Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 67,
               "Title": "ChatmessageRepository .cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\ChatmessageRepository .cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\ChatmessageRepository .cs",
@@ -1486,12 +1436,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\ChatmessageRepository .cs",
               "ViewState": "AgIAAA8AAAAAAAAAAADgvycAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:52.17Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:52.17Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 68,
               "Title": "DateTimeHelper.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Helpers\\DateTimeHelper.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Helpers\\DateTimeHelper.cs",
@@ -1499,12 +1448,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Helpers\\DateTimeHelper.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAgwD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:56:21.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:56:21.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": "LeaveStatus.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Enums\\LeaveStatus.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Enums\\LeaveStatus.cs",
@@ -1512,12 +1460,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Enums\\LeaveStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:55:56.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:55:56.127Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "LeaveType.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Enums\\LeaveType.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Enums\\LeaveType.cs",
@@ -1525,12 +1472,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Enums\\LeaveType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:56:03.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:56:03.051Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 71,
               "Title": "UserRoles.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Enums\\UserRoles.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Enums\\UserRoles.cs",
@@ -1538,12 +1484,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Enums\\UserRoles.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:55:39.961Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:55:39.961Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 72,
               "Title": "RegisterInternDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\RegisterInternDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\RegisterInternDto.cs",
@@ -1551,12 +1496,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\RegisterInternDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T02:17:09.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T02:17:09.505Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 73,
               "Title": "ApproveLeaveRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Dtos\\ApproveLeaveRequestDto.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Dtos\\ApproveLeaveRequestDto.cs",
@@ -1564,21 +1508,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Dtos\\ApproveLeaveRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:46:01.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "Chatservice.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Chatservice.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Chatservice.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Chatservice.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Services\\Chatservice.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAA6wDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:30:41.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:46:01.456Z"
             },
             {
               "$type": "Document",
@@ -1590,8 +1520,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IChatMessageRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:43:55.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:43:55.502Z"
             },
             {
               "$type": "Document",
@@ -1603,8 +1532,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Conversation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T07:14:32.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T07:14:32.924Z"
             },
             {
               "$type": "Document",
@@ -1616,8 +1544,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Groupchat.cs",
               "ViewState": "AgIAACAAAAAAAAAAAIBQwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:55:11.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T05:55:11.158Z"
             },
             {
               "$type": "Document",
@@ -1629,8 +1556,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\SupervisorDashboardViewModel.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA1wBcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:27:28.88Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T05:27:28.88Z"
             },
             {
               "$type": "Document",
@@ -1653,8 +1579,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\Igroupchatservice.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T05:57:40.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T05:57:40.358Z"
             },
             {
               "$type": "Document",
@@ -1666,8 +1591,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\ICertificateRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:43:45.95Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:43:45.95Z"
             },
             {
               "$type": "Document",
@@ -1679,8 +1603,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Account\\Registerintern.cshtml",
               "ViewState": "AgIAAKoAAAAAAAAAAIBJwMQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:09:58.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:09:58.569Z"
             },
             {
               "$type": "Document",
@@ -1692,8 +1615,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Approvedtr.cshtml",
               "ViewState": "AgIAAFkAAAAAAAAAAAAAwHcAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-10T02:02:43.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:02:43.119Z"
             },
             {
               "$type": "Document",
@@ -1705,8 +1627,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\RegisterViewModel.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAA/wEEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:52:29.128Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:52:29.128Z"
             },
             {
               "$type": "Document",
@@ -1718,8 +1639,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\IInternService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:51:36.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:51:36.16Z"
             },
             {
               "$type": "Document",
@@ -1731,8 +1651,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Availableinterns.cshtml",
               "ViewState": "AgIAADIAAAAAAAAAAAAQwE4AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T01:44:30.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T01:44:30.615Z"
             },
             {
               "$type": "Document",
@@ -1766,8 +1685,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Certificaterepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:23:18.602Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:23:18.602Z"
             },
             {
               "$type": "Document",
@@ -1779,8 +1697,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Shared\\Error.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:37:47.929Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:37:47.929Z"
             },
             {
               "$type": "Document",
@@ -1792,8 +1709,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-06T03:35:40.484Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T03:35:40.484Z"
             },
             {
               "$type": "Document",
@@ -1816,8 +1732,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Evaluateinternviewmodel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:36:13.401Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:36:13.401Z"
             },
             {
               "$type": "Document",
@@ -1829,8 +1744,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Leaverequestservice.cs",
               "ViewState": "AgIAAF4AAAAAAAAAAAAAwHkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:29:05.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:29:05.686Z"
             },
             {
               "$type": "Document",
@@ -1842,8 +1756,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Supervisor\\Approveleaverequest.cshtml",
               "ViewState": "AgIAAGkAAAAAAAAAAAAAwIUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-11T01:06:08.118Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T01:06:08.118Z"
             },
             {
               "$type": "Document",
@@ -1855,8 +1768,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Approveleaverequestviewmodel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T00:53:01.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-11T00:53:01.997Z"
             },
             {
               "$type": "Document",
@@ -1945,8 +1857,7 @@
               "RelativeToolTip": "OJTManagementSystem\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-08T06:47:50.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T06:47:50.336Z"
             },
             {
               "$type": "Document",
@@ -1958,8 +1869,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\LeaveRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:41.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:41.639Z"
             },
             {
               "$type": "Document",
@@ -1982,8 +1892,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\DailyTimeRecordRepository.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAUwDIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:04.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:04.814Z"
             },
             {
               "$type": "Document",
@@ -1995,8 +1904,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Dtrservice.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAAAAwIIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:27:15.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:27:15.514Z"
             },
             {
               "$type": "Document",
@@ -2019,8 +1927,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Emailservice.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:51:28.986Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:51:28.986Z"
             },
             {
               "$type": "Document",
@@ -2032,8 +1939,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Evaluationservice.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAYwHEAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:28:21.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:28:21.707Z"
             },
             {
               "$type": "Document",
@@ -2045,8 +1951,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Submitdtrviewmodel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T06:44:24.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T06:44:24.117Z"
             },
             {
               "$type": "Document",
@@ -2058,8 +1963,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Interndashboardviewmodel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:04:22.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:04:22.622Z"
             },
             {
               "$type": "Document",
@@ -2071,8 +1975,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\Submitleaverequestviewmodel.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAIBJwAUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T06:44:42.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T06:44:42.377Z"
             },
             {
               "$type": "Document",
@@ -2084,8 +1987,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\LeaveRequest.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:16:00.741Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:16:00.741Z"
             },
             {
               "$type": "Document",
@@ -2097,8 +1999,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Views\\Intern\\TimeRecord.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-08T14:11:41.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:11:41.676Z"
             },
             {
               "$type": "Document",
@@ -2110,8 +2011,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\DailyTimeRecordViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T06:30:08.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T06:30:08.101Z"
             },
             {
               "$type": "Document",
@@ -2145,8 +2045,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\SupervisorService.cs",
               "ViewState": "AgIAAJwAAAAAAAAAAAAUwLkAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:52:03.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:52:03.801Z"
             },
             {
               "$type": "Document",
@@ -2169,8 +2068,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Certificate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:48:55.918Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:48:55.918Z"
             },
             {
               "$type": "Document",
@@ -2182,8 +2080,7 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\CertificateViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:26:52.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T05:26:52.353Z"
             },
             {
               "$type": "Document",
@@ -2195,8 +2092,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\ISupervisorService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:51:53.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:51:53.143Z"
             },
             {
               "$type": "Document",
@@ -2208,8 +2104,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Supervisorrepository.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAcwDcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T03:47:43.371Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T03:47:43.371Z"
             },
             {
               "$type": "Document",
@@ -2221,8 +2116,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\Isupervisorrepository.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAcwCwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T03:47:24.736Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T03:47:24.736Z"
             },
             {
               "$type": "Document",
@@ -2234,8 +2128,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\ILeaveRequestService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:31:06.605Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:31:06.605Z"
             },
             {
               "$type": "Document",
@@ -2247,8 +2140,7 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\ITimeRecordRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:49:56.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:49:56.437Z"
             },
             {
               "$type": "Document",
@@ -2260,25 +2152,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\ILeaveRequestRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:30.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:30.086Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 129,
-              "Title": "IInternRepository.cs",
-              "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
-              "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
-              "ToolTip": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
-              "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IInternRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:49:33.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 130,
               "Title": "IEvaluationRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IEvaluationRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\IEvaluationRepository.cs",
@@ -2286,12 +2164,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IEvaluationRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:50:14.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:50:14.642Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 131,
+              "DocumentIndex": 130,
               "Title": "DtrStatus.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Enums\\DtrStatus.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Enums\\DtrStatus.cs",
@@ -2299,12 +2176,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Enums\\DtrStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:55:48.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:55:48.377Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 132,
+              "DocumentIndex": 131,
               "Title": "IDailyTimeRecordRepository.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Repository\\Interfaces\\IDailyTimeRecordRepository.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Repository\\Interfaces\\IDailyTimeRecordRepository.cs",
@@ -2312,12 +2188,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Repository\\Interfaces\\IDailyTimeRecordRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:43:18.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:43:18.911Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 133,
+              "DocumentIndex": 132,
               "Title": "IEvaluationService.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Interfaces\\IEvaluationService.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Interfaces\\IEvaluationService.cs",
@@ -2325,12 +2200,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\IEvaluationService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:30:43.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:30:43.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 134,
+              "DocumentIndex": 133,
               "Title": "IEmailSender.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Interfaces\\IEmailSender.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Interfaces\\IEmailSender.cs",
@@ -2338,12 +2212,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\IEmailSender.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T07:51:19.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T07:51:19.16Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 135,
+              "DocumentIndex": 134,
               "Title": "IDtrService.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Services\\Interfaces\\IDtrService.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Services\\Interfaces\\IDtrService.cs",
@@ -2351,12 +2224,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Services\\Interfaces\\IDtrService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T14:30:20.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T14:30:20.824Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 136,
+              "DocumentIndex": 135,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "OJTManagementSystem\\wwwroot\\js\\site.js",
@@ -2364,12 +2236,11 @@
               "RelativeToolTip": "OJTManagementSystem\\wwwroot\\js\\site.js",
               "ViewState": "AgIAAGAAAAAAAAAAAAAqwG8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-02-06T03:04:52.319Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T03:04:52.319Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 137,
+              "DocumentIndex": 136,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\LoginViewModel.cs",
@@ -2377,12 +2248,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\LoginViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T01:35:16.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T01:35:16.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 138,
+              "DocumentIndex": 137,
               "Title": "LeaveRequestViewModel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\LeaveRequestViewModel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\LeaveRequestViewModel.cs",
@@ -2390,12 +2260,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\LeaveRequestViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:24:45.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T05:24:45.377Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 139,
+              "DocumentIndex": 138,
               "Title": "EvaluationViewModel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\ViewModel\\EvaluationViewModel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\ViewModel\\EvaluationViewModel.cs",
@@ -2403,12 +2272,11 @@
               "RelativeToolTip": "OJTManagementSystem\\ViewModel\\EvaluationViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T05:25:08.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T05:25:08.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 140,
+              "DocumentIndex": 139,
               "Title": "Evaluation.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\Evaluation.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\Evaluation.cs",
@@ -2416,12 +2284,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\Evaluation.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAmwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T02:51:41.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-09T02:51:41.119Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 141,
+              "DocumentIndex": 140,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Models\\ErrorViewModel.cs",
@@ -2429,12 +2296,11 @@
               "RelativeToolTip": "OJTManagementSystem\\Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-08T14:39:20.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T14:39:20.57Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 142,
+              "DocumentIndex": 141,
               "Title": "20260208065349_k.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Migrations\\20260208065349_k.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Migrations\\20260208065349_k.cs",
@@ -2445,7 +2311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 143,
+              "DocumentIndex": 142,
               "Title": "OJTManagementSystem.csproj",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\OJTManagementSystem.csproj",
               "RelativeDocumentMoniker": "OJTManagementSystem\\OJTManagementSystem.csproj",
@@ -2453,12 +2319,11 @@
               "RelativeToolTip": "OJTManagementSystem\\OJTManagementSystem.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-08T05:32:54.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T05:32:54.7Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 144,
+              "DocumentIndex": 143,
               "Title": "20260206034543_l.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Migrations\\20260206034543_l.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Migrations\\20260206034543_l.cs",
@@ -2469,7 +2334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 145,
+              "DocumentIndex": 144,
               "Title": "20260206031452_k.cs",
               "DocumentMoniker": "C:\\Users\\HUAWEI\\source\\repos\\OJTManagementSystem\\OJTManagementSystem\\Migrations\\20260206031452_k.cs",
               "RelativeDocumentMoniker": "OJTManagementSystem\\Migrations\\20260206031452_k.cs",
