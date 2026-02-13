@@ -1,0 +1,104 @@
+﻿@model List<OJTManagementSystem.ViewModel.InternViewModel>
+@{
+    ViewData["Title"] = "Available Interns";
+}
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Assign Interns to Your Supervision</h2>
+            <a href="@Url.Action("ManageInterns", "Supervisor")" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to My Interns
+            </a>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-people-fill me-2"></i>
+                Available Interns Waiting for Assignment
+                <span class="badge bg-primary ms-2">@Model.Count</span>
+            </h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Student ID</th>
+                        <th>School</th>
+                        <th>Course</th>
+                        <th>Department</th>
+                        <th>Duration</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var intern in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@intern.FirstName @intern.LastName</strong>
+                            </td>
+                            <td>@intern.Email</td>
+                            <td>@intern.StudentId</td>
+                            <td>@intern.School</td>
+                            <td>@intern.Course</td>
+                            <td>@intern.Department</td>
+                            <td>
+                                <small>
+                                    @intern.StartDate.ToString("MMM dd, yyyy")
+                                    &ndash;
+                                    @intern.EndDate.ToString("MMM dd, yyyy")
+                                </small>
+                            </td>
+                            <td class="text-center">
+                                @* anti-forgery token required for [ValidateAntiForgeryToken] *@
+                                <form method="post" asp-action="AssignIntern" asp-controller="Supervisor">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="internId" value="@intern.InternId" />
+                                    <button type="submit" class="btn btn-sm btn-success"
+                                            onclick="return confirm('Assign @intern.FirstName @intern.LastName to your supervision?');">
+                                        <i class="bi bi-check-circle"></i> Assign to Me
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading"><i class="bi bi-check-circle-fill me-2"></i>No Available Interns</h4>
+        <p>All interns have been assigned to supervisors, or there are currently no unassigned interns in the system.</p>
+        <hr>
+        <a href="@Url.Action("ManageInterns", "Supervisor")" class="btn btn-primary">
+            <i class="bi bi-arrow-left"></i> Back to My Assigned Interns
+        </a>
+    </div>
+}

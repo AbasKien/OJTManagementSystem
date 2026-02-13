@@ -1,9 +1,8 @@
-namespace OJTManagementSystem.Models
+﻿namespace OJTManagementSystem.Models
 {
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }
-
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }

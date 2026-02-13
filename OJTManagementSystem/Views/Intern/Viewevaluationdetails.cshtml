@@ -1,0 +1,87 @@
+﻿@model OJTManagementSystem.ViewModel.EvaluationViewModel
+@{
+    ViewData["Title"] = "Evaluation Details";
+    var fr = Model.FinalRating;
+    var bc = fr >= 4.5m ? "bg-success" : fr >= 3.5m ? "bg-primary" : fr >= 2.5m ? "bg-warning text-dark" : "bg-danger";
+    var lbl = fr >= 4.5m ? "Excellent" : fr >= 3.5m ? "Good" : fr >= 2.5m ? "Average" : "Needs Improvement";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show"><i class="fas fa-exclamation-circle me-2"></i>@TempData["Error"]<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+        }
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-clipboard-check me-2"></i>Evaluation Details</h5>
+                <a asp-controller="Intern" asp-action="ViewEvaluation" class="btn btn-sm btn-outline-light"><i class="fas fa-arrow-left me-1"></i>Back</a>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <p class="mb-1"><strong>Evaluated By:</strong> @Model.SupervisorName</p>
+                        <p class="mb-1"><strong>Date:</strong> @Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="text-muted small">Final Rating</div>
+                        <span class="badge @bc" style="font-size:1.3rem;padding:.5rem 1rem">@Model.FinalRating.ToString("F2") / 5.0</span>
+                        <div class="text-muted small mt-1">@lbl</div>
+                    </div>
+                </div>
+                <hr />
+                <div class="alert alert-light border mb-4">
+                    <h6 class="mb-2"><strong><i class="fas fa-info-circle me-1"></i>Rating Scale</strong></h6>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span><span class="badge bg-danger">1</span> Poor</span>
+                        <span><span class="badge bg-warning text-dark">2</span> Below Average</span>
+                        <span><span class="badge bg-secondary">3</span> Average</span>
+                        <span><span class="badge bg-primary">4</span> Good</span>
+                        <span><span class="badge bg-success">5</span> Excellent</span>
+                    </div>
+                </div>
+                <h6 class="mb-3"><i class="fas fa-bar-chart-line me-2"></i>Criteria Breakdown</h6>
+                @{
+                    var criteria = new[]{
+                                new{Label="Technical Competence",Value=Model.TechnicalCompetence,Color="bg-success",Desc="Knowledge and skill in assigned tasks"},
+                                new{Label="Punctuality",Value=Model.Punctuality,Color="bg-info",Desc="Attendance and timeliness"},
+                                new{Label="Cooperation",Value=Model.Cooperation,Color="bg-warning",Desc="Ability to work with team"},
+                                new{Label="Communication",Value=Model.Communication,Color="bg-danger",Desc="Clarity and effectiveness in communication"},
+                                new{Label="Quality of Work",Value=Model.QualityOfWork,Color="bg-secondary",Desc="Accuracy and thoroughness"},
+                                new{Label="Reliability",Value=Model.Reliability,Color="bg-primary",Desc="Dependability and responsibility"},
+                                };
+                }
+                <div class="row g-3 mb-4">
+                    @foreach (var c in criteria)
+                    {
+                        <div class="col-md-6">
+                            <div class="card border h-100">
+                                <div class="card-body py-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <strong>@c.Label</strong>
+                                        <span class="badge @c.Color">@c.Value.ToString("F1") / 5.0</span>
+                                    </div>
+                                    <div class="progress mb-1" style="height:8px">
+                                        <div class="progress-bar @c.Color" role="progressbar" style="width:@((c.Value / 5m * 100).ToString("F0"))%"></div>
+                                    </div>
+                                    <small class="text-muted">@c.Desc</small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(Model.Comments))
+                {
+                    <hr />
+                
+                    <h6><i class="fas fa-comment me-2"></i>Supervisor Comments</h6>
+                    <div class="alert alert-light border"><p class="mb-0">@Model.Comments</p></div>
+                }
+                <div class="mt-3 d-flex gap-2">
+                    <a asp-controller="Intern" asp-action="ViewEvaluation" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-1"></i>Back</a>
+                    <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary"><i class="fas fa-home me-1"></i>Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

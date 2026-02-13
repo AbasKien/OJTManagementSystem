@@ -1,0 +1,164 @@
+﻿@model OJTManagementSystem.ViewModel.EvaluateInternViewModel
+@using OJTManagementSystem.ViewModel
+@{
+    ViewData["Title"] = "Evaluate Intern";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Evaluate Intern Performance</h3>
+            </div>
+            <div class="card-body">
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-circle"></i> @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form method="post" asp-action="EvaluateIntern" class="needs-validation" novalidate>
+                    <!-- ✅ FIX: Use asp-for for proper model binding to DTO -->
+                    <<div asp-validation-summary="All" class="small text-muted"></div>
+
+                    <input type="hidden" asp-for="InternId" />
+
+                    <div class="alert alert-info">
+                        <h6 class="mb-2"><strong>Rating Scale (1-5)</strong></h6>
+                        <ul class="mb-0">
+                            <li><strong>1 = Poor</strong> - Needs significant improvement</li>
+                            <li><strong>2 = Below Average</strong> - Below expected standards</li>
+                            <li><strong>3 = Average</strong> - Meets basic requirements</li>
+                            <li><strong>4 = Good</strong> - Exceeds expectations</li>
+                            <li><strong>5 = Excellent</strong> - Outstanding performance</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="TechnicalCompetence" class="form-label"><strong>Technical Competence</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="TechnicalCompetence" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'techValue')" />
+                            <span id="techValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.TechnicalCompetence > 0 ? Model.TechnicalCompetence : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Knowledge and skill in assigned tasks</small>
+                        <span asp-validation-for="TechnicalCompetence" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Punctuality" class="form-label"><strong>Punctuality</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="Punctuality" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'punctValue')" />
+                            <span id="punctValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.Punctuality > 0 ? Model.Punctuality : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Attendance and timeliness</small>
+                        <span asp-validation-for="Punctuality" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Cooperation" class="form-label"><strong>Cooperation</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="Cooperation" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'coopValue')" />
+                            <span id="coopValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.Cooperation > 0 ? Model.Cooperation : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Ability to work with team and follow instructions</small>
+                        <span asp-validation-for="Cooperation" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Communication" class="form-label"><strong>Communication</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="Communication" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'commValue')" />
+                            <span id="commValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.Communication > 0 ? Model.Communication : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Clarity and effectiveness in communication</small>
+                        <span asp-validation-for="Communication" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="QualityOfWork" class="form-label"><strong>Quality of Work</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="QualityOfWork" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'qualValue')" />
+                            <span id="qualValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.QualityOfWork > 0 ? Model.QualityOfWork : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Accuracy and thoroughness of work</small>
+                        <span asp-validation-for="QualityOfWork" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Reliability" class="form-label"><strong>Reliability</strong></label>
+                        <div class="d-flex align-items-center gap-3">
+                            <input asp-for="Reliability" type="range" class="form-range flex-grow-1"
+                                   min="1" max="5"
+                                   onchange="updateValue(this, 'reliValue')" />
+                            <span id="reliValue" class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                                @(Model.Reliability > 0 ? Model.Reliability : 1)
+                            </span>
+                        </div>
+                        <small class="text-muted d-block mt-2">Dependability and responsibility</small>
+                        <span asp-validation-for="Reliability" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Comments" class="form-label"><strong>Comments (Optional)</strong></label>
+                        <textarea asp-for="Comments" class="form-control" rows="4"
+                                  placeholder="Provide additional feedback about the intern's performance..."
+                                  maxlength="1000">@Model.Comments</textarea>
+                        <small class="text-muted d-block mt-1"><span id="charCount">0</span>/1000 characters</small>
+                        <span asp-validation-for="Comments" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-check-circle"></i> Submit Evaluation
+                        </button>
+                        <a href="@Url.Action("ManageInterns", "Supervisor")" class="btn btn-secondary btn-lg">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateValue(input, spanId) {
+        document.getElementById(spanId).textContent = input.value;
+    }
+
+    // Character counter for comments
+    document.getElementById('Comments').addEventListener('input', function() {
+        document.getElementById('charCount').textContent = this.value.length;
+    });
+
+    // Initialize character count on page load
+    document.getElementById('charCount').textContent = document.getElementById('Comments').value.length;
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

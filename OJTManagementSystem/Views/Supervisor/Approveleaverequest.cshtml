@@ -1,0 +1,153 @@
+﻿@model OJTManagementSystem.ViewModel.ApproveLeaveRequestViewModel
+@using OJTManagementSystem.Enums
+@{
+    ViewData["Title"] = "Approve Leave Request";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Approve Leave Request</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Intern:</strong> @Model.InternName<br>
+                    <strong>Submitted:</strong> @Model.CreatedAt.ToString("MMMM dd, yyyy")
+                </div>
+
+                <h5>Leave Request Details</h5>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Leave Type:</strong> <span class="badge bg-info">@Model.LeaveTypeDisplay</span></p>
+                        <p><strong>Start Date:</strong> @Model.StartDate.ToString("MMMM dd, yyyy")</p>
+                        <p><strong>End Date:</strong> @Model.EndDate.ToString("MMMM dd, yyyy")</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Number of Days:</strong> @Model.NumberOfDays day(s)</p>
+                        <p>
+                            <strong>Current Status:</strong>
+                            @switch (Model.CurrentStatus.ToString())
+                            {
+                                case "Approved":
+                                    <span class="badge bg-success">@Model.CurrentStatus</span>
+                                    break;
+                                case "Pending":
+                                    <span class="badge bg-warning">@Model.CurrentStatus</span>
+                                    break;
+                                case "Rejected":
+                                    <span class="badge bg-danger">@Model.CurrentStatus</span>
+                                    break;
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Reason for Leave:</h6>
+                    <p class="border p-3 rounded bg-light">@Model.Reason</p>
+                </div>
+
+                @if (Model.CurrentStatus.ToString() != "Pending")
+                {
+                    <div class="alert alert-warning">
+                        This leave request has already been processed.
+                    </div>
+                }
+
+                @if (Model.CurrentStatus.ToString() == "Pending")
+                {
+                    <form method="post" asp-action="ApproveLeaveRequest" asp-controller="Supervisor">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Decision <span class="text-danger">*</span></label>
+                            <div>
+                                <div class="form-check">
+                                    <input asp-for="Status" class="form-check-input" type="radio" id="approve" value="@((int)LeaveStatus.Approved)" checked />
+                                    <label class="form-check-label" for="approve">
+                                        <strong class="text-success">Approve Leave Request</strong>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input asp-for="Status" class="form-check-input" type="radio" id="reject" value="@((int)LeaveStatus.Rejected)" />
+                                    <label class="form-check-label" for="reject">
+                                        <strong class="text-danger">Reject Leave Request</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3" id="approvedByDiv">
+                            <label asp-for="ApprovedBy" class="form-label">Approved By (Your Name) <span class="text-danger">*</span></label>
+                            <input asp-for="ApprovedBy" class="form-control" placeholder="Enter your full name" />
+                            <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3" id="rejectionReasonDiv" style="display: none;">
+                            <label asp-for="RejectionReason" class="form-label">Rejection Reason <span class="text-danger">*</span></label>
+                            <textarea asp-for="RejectionReason" class="form-control" rows="3" placeholder="Please provide a reason for rejection..." disabled></textarea>
+                            <span asp-validation-for="RejectionReason" class="text-danger"></span>
+                        </div>
+
+                        <input asp-for="LeaveRequestId" type="hidden" />
+                        <input asp-for="InternId" type="hidden" />
+                        <input asp-for="InternName" type="hidden" />
+                        <input asp-for="StartDate" type="hidden" />
+                        <input asp-for="EndDate" type="hidden" />
+                        <input asp-for="LeaveType" type="hidden" />
+                        <input asp-for="Reason" type="hidden" />
+                        <input asp-for="NumberOfDays" type="hidden" />
+                        <input asp-for="CurrentStatus" type="hidden" />
+                        <input asp-for="CreatedAt" type="hidden" />
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Submit Decision
+                            </button>
+                            <a asp-action="ViewPendingLeaves" asp-controller="Supervisor" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+
+                    <script>
+                        const approvedByField = document.getElementById('ApprovedBy');
+                        const approvedByDiv = document.getElementById('approvedByDiv');
+                        const rejectionReasonField = document.getElementById('RejectionReason');
+                        const rejectionReasonDiv = document.getElementById('rejectionReasonDiv');
+
+                        document.getElementById('approve').addEventListener('change', function () {
+                            approvedByDiv.style.display = 'block';
+                            approvedByField.disabled = false; // Enable for validation
+
+                            rejectionReasonDiv.style.display = 'none';
+                            rejectionReasonField.value = ''; // Clear rejection reason
+                            rejectionReasonField.disabled = true; // Disable so it won't validate
+                        });
+
+                        document.getElementById('reject').addEventListener('change', function () {
+                            approvedByDiv.style.display = 'none';
+                            approvedByField.value = ''; // Clear approver name
+                            approvedByField.disabled = true; // Disable so it won't validate
+
+                            rejectionReasonDiv.style.display = 'block';
+                            rejectionReasonField.disabled = false; // Enable for validation
+                        });
+                    </script>
+                }
+                else
+                {
+                    <a asp-action="ViewPendingLeaves" asp-controller="Supervisor" class="btn btn-secondary">Back to Pending Leaves</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,66 @@
+﻿@model OJTManagementSystem.ViewModel.CertificateViewModel
+@{
+    ViewData["Title"] = "My Certificate";
+}
+
+@if (Model != null)
+{
+    <div class="d-flex justify-content-center gap-2 mb-3">
+        <button onclick="window.print()" class="btn btn-primary"><i class="fas fa-print me-2"></i>Print Certificate</button>
+        <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary"><i class="fas fa-home me-1"></i>Dashboard</a>
+    </div>
+    <div class="card" style="max-width:800px;margin:0 auto">
+        <div class="card-body p-5" style="border:4px double #0d6efd">
+            <div class="text-center mb-4">
+                <i class="fas fa-award text-warning" style="font-size:3.5rem"></i>
+                <h1 class="fw-bold text-primary mt-2" style="font-size:1.8rem;letter-spacing:2px">CERTIFICATE OF COMPLETION</h1>
+                <hr style="width:200px;margin:16px auto;border-top:3px solid #ffc107" />
+            </div>
+            <div class="text-center mb-4">
+                <p class="text-muted mb-1">This is to certify that</p>
+                <h2 class="fw-bold text-primary">@Model.InternFullName</h2>
+                <p class="mb-1">from <strong>@Model.School</strong></p>
+                <p class="mb-0">enrolled in <strong>@Model.Course</strong></p>
+            </div>
+            <div class="text-center mb-4">
+                <p class="text-muted mb-1">has successfully completed</p>
+                <h3 class="fw-bold text-success">@Model.TotalHoursCompleted Hours</h3>
+                <p class="mb-0">of On-the-Job Training</p>
+            </div>
+            <div class="text-center mb-4">
+                <p class="mb-0">from <strong>@Model.StartDate.ToString("MMMM dd, yyyy")</strong> to <strong>@Model.IssueDate.ToString("MMMM dd, yyyy")</strong></p>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6 text-center">
+                    <hr style="width:200px;margin:0 auto" />
+                    <p class="mt-2"><strong>@Model.IssuedBy</strong></p>
+                    <p class="text-muted small">Supervisor</p>
+                </div>
+                <div class="col-6 text-center">
+                    <hr style="width:200px;margin:0 auto" />
+                    <p class="mt-2"><strong>@Model.IssueDate.ToString("MMMM dd, yyyy")</strong></p>
+                    <p class="text-muted small">Date Issued</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <small class="text-muted">Certificate No: <strong>@Model.CertificateNumber</strong></small>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info"><i class="fas fa-info-circle me-2"></i>Your certificate has not been generated yet. Complete your required hours and wait for your supervisor.</div>
+    <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary"><i class="fas fa-home me-1"></i>Dashboard</a>
+}
+<style>
+    @@media print {
+        .btn, nav, footer, .sidebar, .topbar {
+            display: none !important
+        }
+
+        .card {
+            border: 4px double #000 !important;
+            box-shadow: none !important
+        }
+    }</style>

@@ -1,58 +1,87 @@
-﻿@model OJTManagementSystem.ViewModels.ExpenseLoginUserViewModel
-
+﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Login";
 }
 
-<div class="container d-flex justify-content-center align-items-center">
-    <div class="col-md-5 col-lg-4">
-        <div class="card animate-in">
-            <div class="card-header text-center">
-                <i class="bi bi-box-arrow-in-right"></i> Login
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white py-4">
+                <h3 class="mb-0">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </h3>
+                <p class="mb-0 mt-2 small">Access your OJT Management Account</p>
             </div>
 
-            <div class="card-body">
-                <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="card-body p-4">
+                <form method="post" asp-action="Login" novalidate>
+                    <div asp-validation-summary="All" class="small text-muted"></div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email Address</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
 
-                    <div class="mb-4">
-                        <label asp-for="Email" class="form-label">
-                            <i class="bi bi-envelope"></i> Email
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-bold">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" asp-for="RememberMe" />
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me
                         </label>
-                        <input asp-for="Email"
-                               class="form-control"
-                               type="email"
-                               placeholder="you@example.com" />
-                        <span asp-validation-for="Email" class="text-danger fw-bold"></span>
                     </div>
 
-                    <div class="mb-4">
-                        <label asp-for="Password" class="form-label">
-                            <i class="bi bi-lock"></i> Password
-                        </label>
-                        <input asp-for="Password"
-                               class="form-control"
-                               type="password"
-                               placeholder="••••••••" />
-                        <span asp-validation-for="Password" class="text-danger fw-bold"></span>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-door-open-fill"></i> Login
-                        </button>
-
-                        <a asp-controller="Account"
-                           asp-action="Register"
-                           class="btn btn-secondary">
-                            <i class="bi bi-person-plus"></i> Create Account
-                        </a>
-                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3 fw-bold">
+                        <i class="fas fa-lock-open"></i> Login
+                    </button>
                 </form>
+
+
+                <div class="text-center">
+                    <p class="mb-2">Don't have an account?</p>
+                    <div class="d-grid gap-2 mb-3">
+                        <a href="/Account/RegisterIntern" class="btn btn-outline-success btn-sm">Register as Intern</a>
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<style>
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+        }
+</style>

@@ -1,0 +1,95 @@
+﻿@model OJTManagementSystem.ViewModel.DailyTimeRecordViewModel
+@{
+    ViewData["Title"] = "Submit Time Record";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+        <!-- PAGE HEADER -->
+        <div class="mb-4">
+            <h2 class="fw-semibold">
+                <i class="bi bi-clock-history text-primary me-1"></i>
+                Submit Daily Time Record
+            </h2>
+            <p class="text-muted mb-0">
+                Please complete the form accurately. Submitted records are subject to supervisor approval.
+            </p>
+        </div>
+
+        <!-- FORM CARD -->
+        <div class="card shadow-lg">
+            <div class="card-body p-4">
+
+                <form asp-action="TimeRecord" method="post">
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger"></div>
+
+                    <!-- DATE -->
+                    <div class="mb-3">
+                        <label asp-for="Date" class="form-label fw-semibold"></label>
+                        <input asp-for="Date"
+                               class="form-control"
+                               type="date" />
+                        <span asp-validation-for="Date"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <!-- TIME IN / TIME OUT -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="TimeIn" class="form-label fw-semibold"></label>
+                            <input asp-for="TimeIn"
+                                   class="form-control"
+                                   type="time" />
+                            <span asp-validation-for="TimeIn"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="TimeOut" class="form-label fw-semibold"></label>
+                            <input asp-for="TimeOut"
+                                   class="form-control"
+                                   type="time" />
+                            <span asp-validation-for="TimeOut"
+                                  class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- ACTIVITIES -->
+                    <div class="mb-4">
+                        <label asp-for="Activities"
+                               class="form-label fw-semibold">
+                            Activities Performed
+                        </label>
+                        <textarea asp-for="Activities"
+                                  class="form-control"
+                                  rows="5"
+                                  placeholder="Briefly describe the tasks or activities completed during your OJT shift"></textarea>
+                        <span asp-validation-for="Activities"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary px-4">
+                            Cancel
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary px-4">
+                            <i class="bi bi-check-circle me-1"></i>
+                            Submit Record
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,56 @@
+﻿@model SubmitLeaveRequestViewModel
+@using OJTManagementSystem.Enums
+@{
+    ViewData["Title"] = "Request Leave";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0"><i class="fas fa-calendar-times me-2"></i>Request Leave</h5></div>
+            <div class="card-body">
+                <form method="post" asp-action="RequestLeave">
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="StartDate" class="form-label fw-semibold">Start Date</label>
+                            <input asp-for="StartDate" type="date" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="EndDate" class="form-label fw-semibold">End Date</label>
+                            <input asp-for="EndDate" type="date" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="LeaveType" class="form-label fw-semibold">Leave Type</label>
+                        <select asp-for="LeaveType" class="form-select">
+                            <option value="">-- Select Leave Type --</option>
+                            <option value="@LeaveType.Sick">Sick Leave</option>
+                            <option value="@LeaveType.Vacation">Vacation</option>
+                            <option value="@LeaveType.Emergency">Emergency</option>
+                            <option value="@LeaveType.Personal">Personal</option>
+                        </select>
+                        <span asp-validation-for="LeaveType" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Reason" class="form-label fw-semibold">Reason</label>
+                        <textarea asp-for="Reason" class="form-control" rows="4" placeholder="Please provide a reason for your leave request..."></textarea>
+                        <span asp-validation-for="Reason" class="text-danger small"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Submit Request</button>
+                        <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary"><i class="fas fa-times me-1"></i>Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

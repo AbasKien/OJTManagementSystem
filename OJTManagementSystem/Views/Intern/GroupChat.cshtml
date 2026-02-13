@@ -1,0 +1,110 @@
+﻿@model GroupChatViewModel
+@{
+    ViewData["Title"] = Model?.GroupName ?? "Group Chat"; var ctrl = ViewContext.RouteData.Values["controller"].ToString(); var avail = ViewBag.AvailableUsers as List<dynamic>;
+}
+
+<div class="row g-3" style="height:calc(100vh - 140px)">
+    <!-- Members sidebar -->
+    <div class="col-md-3">
+        <div class="card mb-3">
+            <div class="card-header"><h6 class="mb-0"><i class="fas fa-users me-2"></i>Members (@Model.Members.Count)</h6></div>
+            <div class="list-group list-group-flush" style="max-height:300px;overflow-y:auto">
+                @foreach (var m in Model.Members.OrderByDescending(x => x.IsAdmin).ThenBy(x => x.UserName))
+                {
+                    <div class="list-group-item py-2 px-3 d-flex justify-content-between align-items-center">
+                        <div><h6 class="mb-0 small">@m.UserName</h6><small class="text-muted">@m.JoinedAt.ToString("MMM dd")</small></div>
+                        @if (m.IsAdmin)
+                        {
+                            <span class="badge bg-warning text-dark"><i class="fas fa-shield-alt"></i></span>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="card-footer p-2">
+                @if (avail != null && avail.Count > 0)
+                {
+                    <button class="btn btn-sm btn-success w-100" data-bs-toggle="modal" data-bs-target="#addMemberModal"><i class="fas fa-plus me-1"></i>Add Member</button>
+                }
+                else
+                {
+                    <button class="btn btn-sm btn-secondary w-100" disabled>All interns added</button>
+                }
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>Info</h6></div>
+            <div class="card-body py-2 px-3" style="font-size:.85rem">
+                <p class="mb-1"><strong>Created by:</strong> @Model.CreatorName</p>
+                <p class="mb-0"><strong>Date:</strong> @Model.CreatedAt.ToString("MMM dd, yyyy")</p>
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p class="mt-1 text-muted mb-0">@Model.Description</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat -->
+    <div class="col-md-9">
+        <div class="card h-100" style="display:flex;flex-direction:column">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div><strong>@Model.GroupName</strong><small class="text-white-50 ms-2">@Model.MemberCount members · @Model.MessageCount messages</small></div>
+                <a href="@Url.Action("AllChats", ctrl)" class="btn btn-sm btn-outline-light"><i class="fas fa-arrow-left me-1"></i>Back</a>
+            </div>
+            <div class="card-body flex-grow-1 p-3" style="overflow-y:auto;background:#f8f9fa" id="msgArea">
+                @if (Model?.Messages?.Count > 0)
+                {
+                    @foreach (var m in Model.Messages.OrderBy(x => x.CreatedAt))
+                    {
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline gap-2 mb-1">
+                                <strong class="small">@m.SenderName</strong>
+                                <small class="text-muted">@m.CreatedAt.ToString("hh:mm tt")</small>
+                            </div>
+                            <div class="bg-white border rounded p-2 d-inline-block" style="max-width:80%">@m.MessageContent</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center text-muted mt-5"><i class="fas fa-comments fa-3x mb-2"></i><p>No messages yet. Start the conversation!</p></div>
+                }
+            </div>
+            <div class="card-footer">
+                <form asp-action="SendGroupMessage" asp-controller="@ctrl" method="post" class="d-flex gap-2">
+                    <input type="hidden" name="groupChatId" value="@Model.GroupChatId" />
+                    <input type="text" name="messageContent" class="form-control" placeholder="Type a message..." required maxlength="1000" />
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addMemberModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Add Member</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <form asp-action="AddGroupChatMember" asp-controller="@ctrl" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="groupChatId" value="@Model.GroupChatId" />
+                    <label class="form-label fw-semibold">Select Intern</label>
+                    <select name="userId" class="form-select" required>
+                        <option value="">-- Choose an intern --</option>
+                        @if (avail != null)
+                        {
+                            @foreach(var i in avail) {
+                                <option value="@i.UserId">@i.FullName (@i.Email)</option>
+                            }
+ }
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>window.addEventListener('load',()=>{var a=document.getElementById('msgArea');if(a)a.scrollTop=a.scrollHeight})</script>

@@ -1,0 +1,143 @@
+﻿@model List<InternViewModel>
+
+@{
+    ViewData["Title"] = "Manage Interns";
+}
+
+<div class="row mb-3">
+    <div class="col-md-9">
+        <h2>My Assigned Interns</h2>
+    </div>
+    <div class="col-md-3 text-end">
+        <a href="@Url.Action("AvailableInterns", "Supervisor")" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Assign New Intern
+        </a>
+    </div>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@* ✅ FIXED: Proper null/empty model handling *@
+@if (Model != null && Model.Count > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-person-lines-fill me-2"></i>
+                Interns Under Your Supervision
+                <span class="badge bg-success ms-2">@Model.Count</span>
+            </h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Student ID</th>
+                        <th>School</th>
+                        <th>Course</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th class="text-center">OJT Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var intern in Model)
+                    {
+                        @if (intern != null)  // ✅ CRITICAL: Null safety check
+                        {
+                            var isOjtComplete = intern.EndDate != default && intern.EndDate.Date <= DateTime.Today;
+
+                            <tr>
+                                <td>
+                                    <strong>@intern.FirstName @intern.LastName</strong>
+                                </td>
+                                <td>@intern.Email</td>
+                                <td>@intern.StudentId</td>
+                                <td>@intern.School</td>
+                                <td>@intern.Course</td>
+                                <td>@intern.StartDate.ToString("MMM dd, yyyy")</td>
+                                <td>@intern.EndDate.ToString("MMM dd, yyyy")</td>
+                                <td class="text-center">
+                                    @if (isOjtComplete)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle"></i> Completed
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="bi bi-clock"></i> Ongoing
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a href="@Url.Action("EvaluateIntern", "Supervisor", new { internId = intern.InternId })"
+                                           class="btn btn-sm btn-success">
+                                            <i class="bi bi-star"></i> Evaluate
+                                        </a>
+
+                                        <a href="@Url.Action("PrivateChat", "Supervisor", new { userId = intern.UserId })"
+                                           class="btn btn-sm btn-info">
+                                            <i class="bi bi-chat"></i> Message
+                                        </a>
+
+                                        @if (isOjtComplete)
+                                        {
+                                            <a href="@Url.Action("GenerateCertificate", "Supervisor", new { internId = intern.InternId })"
+                                               class="btn btn-sm btn-primary"
+                                               onclick="return confirm('Generate a certificate for @intern.FirstName @intern.LastName?')">
+                                                <i class="bi bi-award"></i> Generate Cert
+                                            </a>
+                                            <a href="@Url.Action("ViewCertificate", "Supervisor", new { internId = intern.InternId })"
+                                               class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye"></i> View Cert
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-sm btn-secondary" disabled
+                                                    title="OJT must be completed before generating a certificate">
+                                                <i class="bi bi-award"></i> Certificate
+                                                <i class="bi bi-lock-fill ms-1" style="font-size:0.7rem;"></i>
+                                            </button>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>No Interns Assigned</h4>
+        <p>You don't have any interns assigned to you yet. Click the button below to pick from the pool of available interns.</p>
+        <hr>
+        <a href="@Url.Action("AvailableInterns", "Supervisor")" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Assign Your First Intern
+        </a>
+    </div>
+}

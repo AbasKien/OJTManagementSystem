@@ -1,0 +1,227 @@
+﻿@model RegisterViewModel
+
+
+@{
+    ViewData["Title"] = "Register as Intern";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-success text-white py-4">
+                <h2 class="mb-0">
+                    <i class="fas fa-user-graduate"></i> Register as Intern
+                </h2>
+                <p class="mb-0 mt-2" style="font-size: 0.95rem; opacity: 0.9;">Create your internship account</p>
+            </div>
+
+            <div class="card-body p-4">
+                <form method="post" asp-action="RegisterIntern" novalidate>
+                    <!-- ✅ FIX: Hidden Role field set to "Intern" to satisfy model validation -->
+                    <input type="hidden" asp-for="Role" value="Intern" />
+
+                    <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+
+                    <!-- Personal Information Section -->
+                    <h5 class="mb-3 text-primary">
+                        <i class="fas fa-info-circle"></i> Personal Information
+                    </h5>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label fw-bold">First Name</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="John">
+                            <span asp-validation-for="FirstName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label fw-bold">Last Name</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Doe">
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email Address</label>
+                        <input asp-for="Email" class="form-control" placeholder="john.doe@email.com" type="email">
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="+1 (555) 000-0000" type="tel">
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Internship Details Section -->
+                    <hr class="my-4">
+                    <h5 class="mb-3 text-primary">
+                        <i class="fas fa-briefcase"></i> Internship Details
+                    </h5>
+
+                    <div class="mb-3">
+                        <label asp-for="StudentId" class="form-label fw-bold">Student ID</label>
+                        <input asp-for="StudentId" class="form-control" placeholder="e.g., 2023-1234">
+                        <span asp-validation-for="StudentId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="School" class="form-label fw-bold">School / University</label>
+                        <input asp-for="School" class="form-control" placeholder="e.g., ABC University">
+                        <span asp-validation-for="School" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Course" class="form-label fw-bold">Course / Program</label>
+                            <input asp-for="Course" class="form-control" placeholder="e.g., Computer Science">
+                            <span asp-validation-for="Course" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Department" class="form-label fw-bold">Department</label>
+                            <input asp-for="Department" class="form-control" placeholder="e.g., IT, HR, Finance">
+                            <span asp-validation-for="Department" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Internship Duration -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="StartDate" class="form-label fw-bold">Start Date</label>
+                            <input asp-for="StartDate" class="form-control" type="date">
+                            <span asp-validation-for="StartDate" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="EndDate" class="form-label fw-bold">End Date</label>
+                            <input asp-for="EndDate" class="form-control" type="date">
+                            <span asp-validation-for="EndDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- ✅ REMOVED: Supervisor Selection -->
+                    <!-- Interns no longer select their supervisor during registration -->
+                    <!-- Account Credentials Section -->
+                    <hr class="my-4">
+                    <h5 class="mb-3 text-primary">
+                        <i class="fas fa-lock"></i> Account Credentials
+                    </h5>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Password" class="form-label fw-bold">Password</label>
+                            <input asp-for="Password" class="form-control" placeholder="••••••••" type="password">
+                            <small class="text-muted d-block mt-2">
+                                Min 8 characters. Include uppercase, lowercase, number, and special character.
+                            </small>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••" type="password">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success btn-lg fw-bold">
+                            <i class="fas fa-check"></i> Create Account
+                        </button>
+                    </div>
+
+                    <!-- Already have account -->
+                    <div class="text-center">
+                        <p class="mb-0">
+                            Already have an account?
+                            <a href="/Account/Login" class="fw-bold text-decoration-none">Login here</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer with helpful info -->
+            <div class="card-footer bg-light border-top">
+                <div class="alert alert-info mb-0" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Important:</strong> A supervisor will review and assign you to their team after registration. You'll receive a notification once assigned.
+                </div>
+            </div>
+        </div>
+
+        <!-- Alternative registration -->
+        <div class="text-center mt-3">
+            <p>
+                Are you a supervisor?
+                <a href="/Account/RegisterSupervisor" class="fw-bold text-decoration-none">Register as Supervisor</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        }
+
+    .card-header {
+        background: linear-gradient(135deg, #198754 0%, #155724 100%);
+    }
+
+    .form-control {
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+        }
+
+    .form-label {
+        color: #333;
+        font-size: 0.95rem;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #198754 0%, #155724 100%);
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #155724 0%, #0d3818 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.4);
+        }
+
+    h5 {
+        font-size: 1.1rem;
+        color: #198754;
+    }
+
+    .text-muted {
+        font-size: 0.85rem;
+    }
+
+    .alert {
+        border-radius: 6px;
+        border: none;
+    }
+
+    hr {
+        border-color: #e9ecef;
+    }
+</style>

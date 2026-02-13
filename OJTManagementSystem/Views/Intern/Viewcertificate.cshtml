@@ -1,0 +1,135 @@
+﻿@model OJTManagementSystem.ViewModel.CertificateViewModel
+@{
+    ViewData["Title"] = "Certificate of Completion";
+
+    // Detect if we're being viewed from Supervisor or Intern controller
+    var isSupervisor = Context.Request.Path.Value?.Contains("/Supervisor/") == true;
+}
+
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <i class="fas fa-info-circle me-2"></i> @TempData["Info"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="d-flex justify-content-center gap-2 mb-3">
+        <button onclick="window.print()" class="btn btn-primary">
+            <i class="fas fa-print me-2"></i>Print Certificate
+        </button>
+
+        @if (isSupervisor)
+        {
+            <a asp-controller="Supervisor" asp-action="DownloadCertificate"
+               asp-route-internId="@Model.InternId" class="btn btn-success">
+                <i class="fas fa-download me-2"></i>Download PDF
+            </a>
+            <a asp-controller="Supervisor" asp-action="ManageInterns" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Interns
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Intern" asp-action="DownloadCertificate" class="btn btn-success">
+                <i class="fas fa-download me-2"></i>Download PDF
+            </a>
+            <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary">
+                <i class="fas fa-home me-1"></i>Dashboard
+            </a>
+        }
+    </div>
+
+    <div class="card" style="max-width:800px;margin:0 auto">
+        <div class="card-body p-5" style="border:4px double #0d6efd">
+            <div class="text-center mb-4">
+                <i class="fas fa-award text-warning" style="font-size:3.5rem"></i>
+                <h1 class="fw-bold text-primary mt-2" style="font-size:1.8rem;letter-spacing:2px">CERTIFICATE OF COMPLETION</h1>
+                <hr style="width:200px;margin:16px auto;border-top:3px solid #ffc107" />
+            </div>
+
+            <div class="text-center mb-4">
+                <p class="text-muted mb-1">This is to certify that</p>
+                <h2 class="fw-bold text-primary">@Model.InternFullName</h2>
+                <p class="mb-1">from <strong>@Model.School</strong></p>
+                <p class="mb-0">enrolled in <strong>@Model.Course</strong></p>
+            </div>
+
+            <div class="text-center mb-4">
+                <p class="text-muted mb-1">has successfully completed</p>
+                <h3 class="fw-bold text-success">@Model.TotalHoursCompleted Hours</h3>
+                <p class="mb-0">of On-the-Job Training</p>
+            </div>
+
+            <div class="text-center mb-4">
+                <p class="mb-0">
+                    from <strong>@Model.StartDate.ToString("MMMM dd, yyyy")</strong>
+                    to <strong>@Model.EndDate.ToString("MMMM dd, yyyy")</strong>
+                </p>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-6 text-center">
+                    <hr style="width:200px;margin:0 auto" />
+                    <p class="mt-2"><strong>@(string.IsNullOrEmpty(Model.IssuedBy) ? "Authorized Supervisor" : Model.IssuedBy)</strong></p>
+                    <p class="text-muted small">Supervisor</p>
+                </div>
+                <div class="col-6 text-center">
+                    <hr style="width:200px;margin:0 auto" />
+                    <p class="mt-2"><strong>@Model.IssuedDate.ToString("MMMM dd, yyyy")</strong></p>
+                    <p class="text-muted small">Date Issued</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">Certificate No: <strong>@Model.CertificateNumber</strong></small>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <i class="fas fa-award text-muted" style="font-size:4rem;opacity:0.3"></i>
+        <h4 class="mt-3 text-muted">No Certificate Yet</h4>
+        <p class="text-muted">
+            Your certificate has not been generated yet.<br />
+            Complete your required OJT hours and your supervisor will generate it for you.
+        </p>
+
+        @if (isSupervisor)
+        {
+            <a asp-controller="Supervisor" asp-action="ManageInterns" class="btn btn-outline-secondary mt-2">
+                <i class="fas fa-arrow-left me-1"></i>Back to Interns
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Intern" asp-action="Dashboard" class="btn btn-outline-secondary mt-2">
+                <i class="fas fa-home me-1"></i>Back to Dashboard
+            </a>
+        }
+    </div>
+}
+
+<style>
+    @@media print {
+        .btn, nav, footer, .sidebar, .topbar, .alert {
+            display: none !important
+        }
+
+        .card {
+            border: 4px double #000 !important;
+            box-shadow: none !important
+        }
+    }
+</style>

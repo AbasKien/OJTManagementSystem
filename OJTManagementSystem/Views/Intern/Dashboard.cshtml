@@ -1,0 +1,150 @@
+﻿@model InternDashboardViewModel
+@{
+    ViewData["Title"] = "Intern Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold">
+            Welcome, @(Model?.InternProfile?.FullName ?? "Intern") 👋
+        </h2>
+        <p class="text-muted mb-0">
+            Here is your internship progress overview.
+        </p>
+    </div>
+</div>
+
+@if (Model?.InternProfile == null)
+{
+    <div class="alert alert-info">
+        Loading your profile...
+    </div>
+    return;
+}
+
+@if (Model.InternProfile.SupervisorId == null)
+{
+    <div class="alert alert-warning shadow-sm">
+        <strong>Waiting for Supervisor Assignment</strong><br />
+        You cannot submit DTR or Leave requests until a supervisor assigns you.
+    </div>
+}
+
+<!-- ===================== PROFILE CARD ===================== -->
+<div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Student ID:</strong> @Model.InternProfile.StudentId</p>
+                <p><strong>School:</strong> @Model.InternProfile.School</p>
+                <p><strong>Course:</strong> @Model.InternProfile.Course</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Department:</strong> @Model.InternProfile.Department</p>
+                <p>
+                    <strong>Supervisor:</strong>
+                    @if (Model.InternProfile.SupervisorId != null)
+                    {
+                        <span class="badge bg-success">@Model.InternProfile.SupervisorName</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Not Assigned</span>
+                    }
+                </p>
+                <p>
+                    <strong>Duration:</strong>
+                    @Model.InternProfile.StartDate.ToString("MMM dd, yyyy")
+                    -
+                    @Model.InternProfile.EndDate.ToString("MMM dd, yyyy")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== STAT CARDS ===================== -->
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">Submitted</h6>
+                <h3 class="text-primary fw-bold">@Model.TotalDtrSubmitted</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">Approved</h6>
+                <h3 class="text-success fw-bold">@Model.ApprovedDtrCount</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">Pending</h6>
+                <h3 class="text-warning fw-bold">@Model.PendingDtrCount</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">Rejected</h6>
+                <h3 class="text-danger fw-bold">@Model.RejectedDtrCount</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===================== EVALUATION ===================== -->
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white fw-bold">
+        Latest Evaluation
+    </div>
+    <div class="card-body">
+
+        @if (Model.LatestEvaluation != null)
+        {
+            <p>
+                <strong>Rating:</strong>
+                <span class="badge bg-primary">
+                    @Model.LatestEvaluation.FinalRating.ToString("F2") / 5.0
+                </span>
+            </p>
+            <p><strong>Supervisor:</strong> @Model.LatestEvaluation.SupervisorName</p>
+            <p><strong>Comments:</strong> @Model.LatestEvaluation.Comments</p>
+
+            <a asp-controller="Intern" asp-action="ViewEvaluation" class="btn btn-info">
+                View Full Evaluation
+            </a>
+        }
+        else
+        {
+            <p class="text-muted">No evaluation available yet.</p>
+        }
+
+        <hr />
+
+        @if (Model.Certificate != null)
+        {
+            <a asp-controller="Intern" asp-action="DownloadCertificate" class="btn btn-success">
+                Download Certificate
+            </a>
+        }
+        else
+        {
+            <button class="btn btn-success" disabled>
+                Certificate Not Available
+            </button>
+        }
+
+    </div>
+</div>

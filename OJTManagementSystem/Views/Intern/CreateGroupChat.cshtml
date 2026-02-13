@@ -1,0 +1,44 @@
+﻿@using OJTManagementSystem.Dtos
+@model CreateGroupChatDto
+@{
+    ViewData["Title"] = "New Group Chat";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><h5 class="mb-0"><i class="fas fa-plus me-2"></i>Create New Group Chat</h5></div>
+            <div class="card-body">
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show">@TempData["Error"]<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                }
+                <form asp-action="CreateGroupChat" method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="GroupName" class="form-label fw-semibold">Group Name</label>
+                        <input asp-for="GroupName" type="text" class="form-control" placeholder="e.g., IT Interns 2024" minlength="3" maxlength="200" required />
+                        <span asp-validation-for="GroupName" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Description" class="form-label fw-semibold">Description <span class="text-muted small fw-normal">(optional)</span></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="What's this group about?" maxlength="500"></textarea>
+                        <div class="text-muted small mt-1"><span id="charCount">0</span>/500</div>
+                    </div>
+                    <div class="alert alert-light border small"><i class="fas fa-info-circle me-2 text-primary"></i>You will be the group admin and can add members after creation.</div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary flex-grow-1"><i class="fas fa-check me-2"></i>Create Group</button>
+                        <a asp-controller="Intern" asp-action="AllChats" class="btn btn-outline-secondary"><i class="fas fa-times me-1"></i>Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>var d=document.getElementById('Description');if(d){d.addEventListener('input',function(){document.getElementById('charCount').textContent=this.value.length});document.getElementById('charCount').textContent=d.value.length}</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

@@ -1,0 +1,137 @@
+﻿@model OJTManagementSystem.ViewModel.ApproveDtrViewModel
+@using OJTManagementSystem.Enums
+@{
+    ViewData["Title"] = "Approve DTR";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Approve Daily Time Record</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Intern:</strong> @Model.InternName<br>
+                    <strong>Date:</strong> @Model.RecordDate.ToString("MMMM dd, yyyy")
+                </div>
+
+                <h5>DTR Details</h5>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Time In:</strong> @Model.TimeIn.ToString("hh\\:mm")</p>
+                        <p><strong>Time Out:</strong> @Model.TimeOut.ToString("hh\\:mm")</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Total Hours:</strong> @Model.TotalHours.ToString("F2")</p>
+                        <p>
+                            <strong>Current Status:</strong>
+                            @switch (Model.CurrentStatus.ToString())
+                            {
+                                case "Approved":
+                                    <span class="badge bg-success">@Model.CurrentStatus</span>
+                                    break;
+                                case "Pending":
+                                    <span class="badge bg-warning">@Model.CurrentStatus</span>
+                                    break;
+                                case "Rejected":
+                                    <span class="badge bg-danger">@Model.CurrentStatus</span>
+                                    break;
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Activity Description:</h6>
+                    <p class="border p-3 rounded">@Model.ActivityDescription</p>
+                </div>
+
+                @if (Model.CurrentStatus.ToString() != "Pending")
+                {
+                    <div class="alert alert-warning">
+                        This DTR has already been processed.
+                    </div>
+                }
+
+                @if (Model.CurrentStatus.ToString() == "Pending")
+                {
+                    <form method="post" asp-action="ApproveDtr" asp-controller="Supervisor">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Action <span class="text-danger">*</span></label>
+                            <div>
+                                <div class="form-check">
+                                    <input asp-for="Status" class="form-check-input" type="radio" id="approve" value="@((int)DtrStatus.Approved)" checked />
+                                    <label class="form-check-label" for="approve">
+                                        <strong class="text-success">Approve DTR</strong>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input asp-for="Status" class="form-check-input" type="radio" id="reject" value="@((int)DtrStatus.Rejected)" />
+                                    <label class="form-check-label" for="reject">
+                                        <strong class="text-danger">Reject DTR</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3" id="rejectionReasonDiv" style="display: none;">
+                            <label asp-for="RejectionReason" class="form-label">Rejection Reason <span class="text-danger">*</span></label>
+                            <textarea asp-for="RejectionReason" class="form-control" rows="3" placeholder="Please provide a reason for rejection..." disabled></textarea>
+                            <span asp-validation-for="RejectionReason" class="text-danger"></span>
+                        </div>
+
+                        <input asp-for="DtrId" type="hidden" />
+                        <input asp-for="InternId" type="hidden" />
+                        <input asp-for="InternName" type="hidden" />
+                        <input asp-for="RecordDate" type="hidden" />
+                        <input asp-for="TimeIn" type="hidden" />
+                        <input asp-for="TimeOut" type="hidden" />
+                        <input asp-for="ActivityDescription" type="hidden" />
+                        <input asp-for="TotalHours" type="hidden" />
+                        <input asp-for="CurrentStatus" type="hidden" />
+                        <input asp-for="CreatedAt" type="hidden" />
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Submit Decision
+                            </button>
+                            <a asp-action="ViewPendingDtrs" asp-controller="Supervisor" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+
+                    <script>
+                        const rejectionReasonField = document.getElementById('RejectionReason');
+                        const rejectionReasonDiv = document.getElementById('rejectionReasonDiv');
+
+                        document.getElementById('approve').addEventListener('change', function () {
+                            rejectionReasonDiv.style.display = 'none';
+                            rejectionReasonField.value = ''; // Clear rejection reason
+                            rejectionReasonField.disabled = true; // Disable so it won't validate
+                        });
+
+                        document.getElementById('reject').addEventListener('change', function () {
+                            rejectionReasonDiv.style.display = 'block';
+                            rejectionReasonField.disabled = false; // Enable for validation
+                        });
+                    </script>
+                }
+                else
+                {
+                    <a asp-action="ViewPendingDtrs" asp-controller="Supervisor" class="btn btn-secondary">Back to Pending DTRs</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
