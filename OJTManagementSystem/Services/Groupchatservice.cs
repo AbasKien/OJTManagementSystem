@@ -169,6 +169,44 @@ namespace OJTManagementSystem.Services
             return true;
         }
 
+        // ═══════════════════════════════════════════════════════════
+        // ✅ READ RECEIPT METHODS - Delegate to repository
+        // ═══════════════════════════════════════════════════════════
+
+        public async Task MarkGroupChatAsReadAsync(int groupChatId, string userId)
+        {
+            await _groupChatRepository.MarkGroupChatAsReadAsync(groupChatId, userId);
+        }
+
+        public async Task<int> GetUnreadGroupMessageCountAsync(string userId)
+        {
+            return await _groupChatRepository.GetUnreadGroupMessageCountAsync(userId);
+        }
+
+        public async Task<int> GetUnreadGroupMessageCountForChatAsync(int groupChatId, string userId)
+        {
+            return await _groupChatRepository.GetUnreadGroupMessageCountForChatAsync(groupChatId, userId);
+        }
+
+        public async Task AddReadReceiptAsync(int messageId, string userId)
+        {
+            await _groupChatRepository.AddReadReceiptAsync(messageId, userId);
+        }
+
+        public async Task<bool> HasUserReadMessageAsync(int messageId, string userId)
+        {
+            return await _groupChatRepository.HasUserReadMessageAsync(messageId, userId);
+        }
+
+        public async Task<int> GetMessageReadCountAsync(int messageId)
+        {
+            return await _groupChatRepository.GetMessageReadCountAsync(messageId);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // HELPER METHODS
+        // ═══════════════════════════════════════════════════════════
+
         private GroupChatViewModel MapToViewModel(GroupChat groupChat)
         {
             return new GroupChatViewModel

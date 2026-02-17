@@ -233,7 +233,9 @@ namespace OJTManagementSystem.Migrations
                     ConversationId = table.Column<int>(type: "int", nullable: false),
                     SenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SentAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    SentAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    ReadAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -261,7 +263,8 @@ namespace OJTManagementSystem.Migrations
                     GroupChatId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     JoinedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    LastReadAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -288,7 +291,7 @@ namespace OJTManagementSystem.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GroupChatId = table.Column<int>(type: "int", nullable: false),
                     SenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MessageContent = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    MessageContent = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -342,6 +345,33 @@ namespace OJTManagementSystem.Migrations
                         principalTable: "Supervisors",
                         principalColumn: "SupervisorId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GroupChatMessageReadReceipts",
+                columns: table => new
+                {
+                    GroupChatMessageReadReceiptId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupChatMessageId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ReadAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroupChatMessageReadReceipts", x => x.GroupChatMessageReadReceiptId);
+                    table.ForeignKey(
+                        name: "FK_GroupChatMessageReadReceipts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GroupChatMessageReadReceipts_GroupChatMessages_GroupChatMessageId",
+                        column: x => x.GroupChatMessageId,
+                        principalTable: "GroupChatMessages",
+                        principalColumn: "GroupChatMessageId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -552,6 +582,17 @@ namespace OJTManagementSystem.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GroupChatMessageReadReceipts_GroupChatMessageId_UserId",
+                table: "GroupChatMessageReadReceipts",
+                columns: new[] { "GroupChatMessageId", "UserId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupChatMessageReadReceipts_UserId",
+                table: "GroupChatMessageReadReceipts",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GroupChatMessages_GroupChatId",
                 table: "GroupChatMessages",
                 column: "GroupChatId");
@@ -621,7 +662,7 @@ namespace OJTManagementSystem.Migrations
                 name: "GroupChatMembers");
 
             migrationBuilder.DropTable(
-                name: "GroupChatMessages");
+                name: "GroupChatMessageReadReceipts");
 
             migrationBuilder.DropTable(
                 name: "LeaveRequests");
@@ -633,10 +674,13 @@ namespace OJTManagementSystem.Migrations
                 name: "Conversations");
 
             migrationBuilder.DropTable(
-                name: "GroupChats");
+                name: "GroupChatMessages");
 
             migrationBuilder.DropTable(
                 name: "Interns");
+
+            migrationBuilder.DropTable(
+                name: "GroupChats");
 
             migrationBuilder.DropTable(
                 name: "Supervisors");

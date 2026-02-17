@@ -7,6 +7,7 @@ using OJTManagementSystem.Models;
 using OJTManagementSystem.Services.Interfaces;
 using OJTManagementSystem.ViewModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace OJTManagementSystem.Controllers
 {
@@ -52,7 +53,6 @@ namespace OJTManagementSystem.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -62,6 +62,29 @@ namespace OJTManagementSystem.Controllers
 
             try
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid email or password.");
+                    return View(model);
+                }
+
+                // ✅ Block login if email is not confirmed
+                if (!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    TempData["InfoMessage"] =
+                        "You must confirm your email before logging in. " +
+                        "Please check your inbox (and spam folder).";
+                    return View(model);
+                }
+
+                if (!user.IsActive)
+                {
+                    ModelState.AddModelError(string.Empty, "Your account has been deactivated. Please contact support.");
+                    return View(model);
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(
                     model.Email,
                     model.Password,
@@ -70,15 +93,7 @@ namespace OJTManagementSystem.Controllers
 
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(model.Email);
                     var roles = await _userManager.GetRolesAsync(user);
-
-                    if (!user.IsActive)
-                    {
-                        await _signInManager.SignOutAsync();
-                        ModelState.AddModelError(string.Empty, "Your account has been deactivated. Please contact support.");
-                        return View(model);
-                    }
 
                     if (roles.Contains("Supervisor"))
                         return RedirectToAction("Dashboard", "Supervisor");
@@ -97,7 +112,7 @@ namespace OJTManagementSystem.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid email or password.");
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "An error occurred during login. Please try again.");
                 return View(model);
@@ -127,6 +142,8 @@ namespace OJTManagementSystem.Controllers
         {
             try
             {
+                model.Role = "Intern";
+
                 if (!ModelState.IsValid)
                     return View(model);
 
@@ -156,6 +173,7 @@ namespace OJTManagementSystem.Controllers
                     return View(model);
                 }
 
+                // ✅ Create user — EmailConfirmed stays false by default (requires verification)
                 var user = MappingHelper.MapRegisterViewModelToApplicationUser(model);
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -174,23 +192,70 @@ namespace OJTManagementSystem.Controllers
                 _context.Interns.Add(intern);
                 await _context.SaveChangesAsync();
 
-                try
-                {
-                    await _emailService.SendWelcomeEmailAsync(user.Email, user.FullName, "Intern");
-                }
-                catch
-                {
-                    // Email failed but registration succeeded
-                }
+                // ✅ Send email confirmation link
+                await SendConfirmationEmailAsync(user);
 
-                TempData["Success"] = "Registration successful! You can now login. A supervisor will be assigned to you shortly.";
-                return RedirectToAction("Login");
+                // ✅ Show "check your email" screen instead of redirecting to login
+                TempData["RegistrationSuccess"] = true;
+                TempData["RegisteredEmail"] = user.Email;
+                return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "An error occurred during registration. Please try again.");
                 return View(model);
             }
+        }
+
+        // ============================================================
+        // CONFIRM EMAIL
+        // ============================================================
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                TempData["EmailConfirmed"] = false;
+                return View();
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                TempData["EmailConfirmed"] = false;
+                return View();
+            }
+
+            var decodedToken = HttpUtility.UrlDecode(token);
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+
+            TempData["EmailConfirmed"] = result.Succeeded;
+            return View();
+        }
+
+        // ============================================================
+        // RESEND CONFIRMATION EMAIL
+        // ============================================================
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResendConfirmationEmail(string email)
+        {
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user != null && !await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    await SendConfirmationEmailAsync(user);
+                }
+            }
+
+            // Always show the same screen (don't reveal whether email exists)
+            TempData["RegistrationSuccess"] = true;
+            TempData["RegisteredEmail"] = email;
+            TempData["SuccessMessage"] = "Confirmation email resent. Please check your inbox.";
+            return RedirectToAction("RegisterIntern");
         }
 
         // ============================================================
@@ -265,7 +330,7 @@ namespace OJTManagementSystem.Controllers
                 TempData["Success"] = "Registration successful! You can now login and start managing interns.";
                 return RedirectToAction("Login");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "An error occurred during registration. Please try again.");
                 return View(model);
@@ -297,28 +362,35 @@ namespace OJTManagementSystem.Controllers
         // ============================================================
         // LOGOUT
         // ============================================================
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+
+            // ✅ CRITICAL FIX: Clear session on logout
+            HttpContext.Session.Clear();
+
             TempData["Success"] = "You have been successfully logged out.";
             return RedirectToAction("Login");
         }
 
+        // Line 378 - GET Logout
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> LogoutGet()
         {
             await _signInManager.SignOutAsync();
+
+            // ✅ CRITICAL FIX: Clear session on logout
+            HttpContext.Session.Clear();
+
             TempData["Success"] = "You have been successfully logged out.";
             return RedirectToAction("Login");
         }
 
         // ============================================================
-        // FORGOT PASSWORD (Optional - depends on your IEmailService)
+        // FORGOT PASSWORD
         // ============================================================
 
         [HttpGet]
@@ -335,43 +407,57 @@ namespace OJTManagementSystem.Controllers
             {
                 if (string.IsNullOrWhiteSpace(email))
                 {
-                    ModelState.AddModelError("Email", "Email is required.");
+                    ModelState.AddModelError("email", "Email is required.");
                     return View();
                 }
 
                 var user = await _userManager.FindByEmailAsync(email);
-                if (user == null)
+
+                // ✅ Only send if user exists AND email is confirmed (no reset for unverified accounts)
+                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
                 {
-                    // Don't reveal that the user doesn't exist
-                    TempData["Success"] = "If an account with that email exists, a password reset link has been sent.";
-                    return RedirectToAction("Login");
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var encoded = HttpUtility.UrlEncode(token);
+                    var resetLink = Url.Action(
+                        action: "ResetPassword",
+                        controller: "Account",
+                        values: new { token = encoded, email = user.Email },
+                        protocol: Request.Scheme);
+
+                    var emailBody = $@"
+                        <div style='font-family:Arial,sans-serif;max-width:600px;margin:auto;'>
+                            <div style='background:linear-gradient(135deg,#6f42c1,#563d7c);padding:30px;border-radius:10px 10px 0 0;text-align:center;'>
+                                <h2 style='color:#fff;margin:0;'>🔐 Password Reset</h2>
+                                <p style='color:rgba(255,255,255,0.85);margin:8px 0 0;'>OJT Management System</p>
+                            </div>
+                            <div style='background:#fff;padding:32px;border:1px solid #e5e7eb;border-radius:0 0 10px 10px;'>
+                                <p style='font-size:15px;color:#374151;'>Hello <strong>{user.FullName}</strong>,</p>
+                                <p style='color:#6b7280;'>We received a request to reset your password. Click the button below to create a new one.</p>
+                                <div style='text-align:center;margin:30px 0;'>
+                                    <a href='{resetLink}'
+                                       style='background:linear-gradient(135deg,#6f42c1,#563d7c);color:#fff;
+                                              padding:14px 32px;border-radius:8px;text-decoration:none;
+                                              font-weight:bold;font-size:15px;display:inline-block;'>
+                                        🔑 Reset My Password
+                                    </a>
+                                </div>
+                                <p style='font-size:13px;color:#9ca3af;text-align:center;'>
+                                    This link expires in <strong>1 hour</strong>. If you did not request this, you can safely ignore this email.
+                                </p>
+                            </div>
+                        </div>";
+
+                    await _emailService.SendEmailAsync(user.Email, "Reset Your OJT Account Password", emailBody);
                 }
 
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var resetLink = Url.Action("ResetPassword", "Account", new { token, email = user.Email }, Request.Scheme);
-
-                // Only send email if your IEmailService has this method
-                // Otherwise, remove this try-catch block
-                try
-                {
-                    // If SendPasswordResetEmailAsync doesn't exist, comment this out
-                    // await _emailService.SendPasswordResetEmailAsync(user.Email, user.FullName, resetLink);
-
-                    // Alternative: use a generic email method if available
-                    // await _emailService.SendEmailAsync(user.Email, "Password Reset", $"Reset your password: {resetLink}");
-                }
-                catch
-                {
-                    TempData["Error"] = "Failed to send password reset email. Please try again later.";
-                    return View();
-                }
-
-                TempData["Success"] = "If an account with that email exists, a password reset link has been sent.";
-                return RedirectToAction("Login");
+                // ✅ Always show success — never reveal whether the email exists (security best practice)
+                TempData["SuccessMessage"] =
+                    $"If an account exists for {email}, a password reset link has been sent. Please check your inbox.";
+                return View();
             }
-            catch
+            catch (Exception)
             {
-                TempData["Error"] = "An error occurred. Please try again.";
+                TempData["ErrorMessage"] = "An error occurred. Please try again.";
                 return View();
             }
         }
@@ -385,8 +471,8 @@ namespace OJTManagementSystem.Controllers
         {
             if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(email))
             {
-                TempData["Error"] = "Invalid password reset link.";
-                return RedirectToAction("Login");
+                TempData["ErrorMessage"] = "Invalid password reset link.";
+                return View();
             }
 
             var model = new ResetPasswordViewModel
@@ -410,24 +496,28 @@ namespace OJTManagementSystem.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    TempData["Error"] = "Invalid password reset attempt.";
-                    return RedirectToAction("Login");
-                }
-
-                var result = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
-                if (!result.Succeeded)
-                {
-                    foreach (var error in result.Errors)
-                        ModelState.AddModelError(string.Empty, error.Description);
+                    // Don't reveal user doesn't exist — just show success
+                    TempData["SuccessMessage"] = "Your password has been reset. You can now log in.";
                     return View(model);
                 }
 
-                TempData["Success"] = "Password has been reset successfully. You can now login with your new password.";
-                return RedirectToAction("Login");
+                var decodedToken = HttpUtility.UrlDecode(model.Token);
+                var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    TempData["SuccessMessage"] = "Password has been reset successfully. You can now login with your new password.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Password reset failed. The link may have expired. Please request a new one.";
+                }
+
+                return View(model);
             }
-            catch
+            catch (Exception)
             {
-                TempData["Error"] = "An error occurred. Please try again.";
+                TempData["ErrorMessage"] = "An error occurred. Please try again.";
                 return View(model);
             }
         }
@@ -441,6 +531,52 @@ namespace OJTManagementSystem.Controllers
         {
             return View();
         }
+
+        // ============================================================
+        // PRIVATE HELPERS
+        // ============================================================
+
+        /// <summary>
+        /// Generates an email confirmation token and sends the confirmation email.
+        /// </summary>
+        private async Task SendConfirmationEmailAsync(ApplicationUser user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var encoded = HttpUtility.UrlEncode(token);
+            var callbackUrl = Url.Action(
+                action: "ConfirmEmail",
+                controller: "Account",
+                values: new { userId = user.Id, token = encoded },
+                protocol: Request.Scheme);
+
+            var emailBody = $@"
+                <div style='font-family:Arial,sans-serif;max-width:600px;margin:auto;'>
+                    <div style='background:linear-gradient(135deg,#198754,#155724);padding:30px;border-radius:10px 10px 0 0;text-align:center;'>
+                        <h2 style='color:#fff;margin:0;'>✉️ Confirm Your Email</h2>
+                        <p style='color:rgba(255,255,255,0.85);margin:8px 0 0;'>OJT Management System</p>
+                    </div>
+                    <div style='background:#fff;padding:32px;border:1px solid #e5e7eb;border-radius:0 0 10px 10px;'>
+                        <p style='font-size:15px;color:#374151;'>Hello <strong>{user.FullName}</strong>,</p>
+                        <p style='color:#6b7280;'>Thank you for registering. Please confirm your email address to activate your account.</p>
+                        <div style='text-align:center;margin:30px 0;'>
+                            <a href='{callbackUrl}'
+                               style='background:linear-gradient(135deg,#198754,#155724);color:#fff;
+                                      padding:14px 32px;border-radius:8px;text-decoration:none;
+                                      font-weight:bold;font-size:15px;display:inline-block;'>
+                                ✅ Confirm Email Address
+                            </a>
+                        </div>
+                        <p style='font-size:13px;color:#9ca3af;text-align:center;'>
+                            This link expires in <strong>24 hours</strong>. If you did not register, you can safely ignore this email.
+                        </p>
+                    </div>
+                </div>";
+
+            await _emailService.SendEmailAsync(
+                user.Email,
+                "Confirm your OJT Account Email",
+                emailBody);
+        }
     }
 
     // ============================================================
@@ -452,14 +588,14 @@ namespace OJTManagementSystem.Controllers
         public string Email { get; set; }
         public string Token { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "New password is required")]
         [DataType(DataType.Password)]
-        [MinLength(8)]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters")]
         public string NewPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please confirm your password")]
         [DataType(DataType.Password)]
-        [Compare("NewPassword")]
+        [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
     }
 }

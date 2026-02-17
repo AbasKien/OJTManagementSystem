@@ -277,26 +277,240 @@
         </main>
     }
 
+    <!-- ========================================
+         TOAST NOTIFICATION CONTAINER
+         ======================================== -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+
+        @* Success Messages *@
+        @if (TempData["Success"] != null || TempData["SuccessMessage"] != null)
+        {
+            var successMsg = TempData["Success"]?.ToString() ?? TempData["SuccessMessage"]?.ToString();
+            <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fas fa-check-circle me-2"></i>
+                        @successMsg
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+
+        @* Error Messages *@
+        @if (TempData["Error"] != null || TempData["ErrorMessage"] != null)
+        {
+            var errorMsg = TempData["Error"]?.ToString() ?? TempData["ErrorMessage"]?.ToString();
+            <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        @errorMsg
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+
+        @* Info Messages — supports optional "View Messages" link button *@
+        @if (TempData["Info"] != null || TempData["InfoMessage"] != null)
+        {
+            var infoMsg = TempData["Info"]?.ToString() ?? TempData["InfoMessage"]?.ToString();
+            var infoLinkUrl = TempData["InfoLinkUrl"]?.ToString();
+            var infoLinkText = TempData["InfoLinkText"]?.ToString();
+
+            <div class="toast align-items-center text-bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fas fa-envelope me-2"></i>
+                            @infoMsg
+                        </div>
+                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    @* ✅ Only show the link button when InfoLinkUrl is set (i.e. new messages notification) *@
+                    @if (!string.IsNullOrEmpty(infoLinkUrl))
+                    {
+                        <div class="px-3 pb-2">
+                            <a href="@infoLinkUrl" class="btn btn-sm btn-dark w-100">
+                                <i class="fas fa-comments me-1"></i> @infoLinkText
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @* Warning Messages *@
+        @if (TempData["Warning"] != null || TempData["WarningMessage"] != null)
+        {
+            var warningMsg = TempData["Warning"]?.ToString() ?? TempData["WarningMessage"]?.ToString();
+            <div class="toast align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        @warningMsg
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+
+    </div>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Mobile sidebar toggle
-        const toggleBtn = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('mainSidebar');
-        if (toggleBtn && sidebar) {
-            toggleBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('show');
-            });
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth < 769 && sidebar.classList.contains('show')) {
-                    if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
-                        sidebar.classList.remove('show');
-                    }
-                }
+        function formatTime(timeString) {
+            if (!timeString) return '';
+            const [hours, minutes] = timeString.split(':');
+            return `${hours}:${minutes}`;
+        }
+
+        function calculateHours(timeIn, timeOut) {
+            if (!timeIn || !timeOut) return 0;
+            const [inHours, inMinutes] = timeIn.split(':').map(Number);
+            const [outHours, outMinutes] = timeOut.split(':').map(Number);
+            const inTotalMinutes = inHours * 60 + inMinutes;
+            const outTotalMinutes = outHours * 60 + outMinutes;
+            let diffMinutes = outTotalMinutes - inTotalMinutes;
+            if (diffMinutes < 0) { diffMinutes += 24 * 60; }
+            return (diffMinutes / 60).toFixed(2);
+        }
+
+        function confirmAction(message) { return confirm(message); }
+
+        function showToast(message, type = 'info') {
+            const toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) return;
+            const toastId = 'toast-' + Date.now();
+            const bgClass = type === 'success' ? 'text-bg-success' :
+                            type === 'error'   ? 'text-bg-danger'  :
+                            type === 'warning' ? 'text-bg-warning' : 'text-bg-info';
+            const icon = type === 'success' ? 'fa-check-circle' :
+                         type === 'error'   ? 'fa-exclamation-circle' :
+                         type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+            const closeClass = (type === 'warning' || type === 'info') ? 'btn-close' : 'btn-close btn-close-white';
+            const toastHTML = `
+                <div id="${toastId}" class="toast align-items-center ${bgClass} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body"><i class="fas ${icon} me-2"></i>${message}</div>
+                        <button type="button" class="${closeClass} me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>`;
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, { autohide: true, delay: 5000 });
+            toast.show();
+            toastElement.addEventListener('hidden.bs.toast', function () { toastElement.remove(); });
+        }
+
+        function showError(message)   { showToast(message, 'error'); }
+        function showSuccess(message) { showToast(message, 'success'); }
+        function showInfo(message)    { showToast(message, 'info'); }
+        function showWarning(message) { showToast(message, 'warning'); }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => { clearTimeout(timeout); func(...args); };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function getQueryParameter(name) {
+            return new URLSearchParams(window.location.search).get(name);
+        }
+
+        function initializeValidation() {
+            const forms = document.querySelectorAll('form[novalidate]');
+            forms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    if (!form.checkValidity()) { e.preventDefault(); e.stopPropagation(); }
+                    form.classList.add('was-validated');
+                });
             });
         }
+
+        function initializeToasts() {
+            const toastElements = document.querySelectorAll('.toast');
+            toastElements.forEach(toastElement => {
+                const toast = new bootstrap.Toast(toastElement, { autohide: true, delay: 6000 });
+                toast.show();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeValidation();
+            initializeToasts();
+
+            const alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
+            alerts.forEach(alert => {
+                setTimeout(() => { new bootstrap.Alert(alert).close(); }, 5000);
+            });
+
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const sidebar   = document.getElementById('mainSidebar');
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => { sidebar.classList.toggle('show'); });
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth < 769 && sidebar.classList.contains('show')) {
+                        if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+                            sidebar.classList.remove('show');
+                        }
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('change', function (e) {
+            if (e.target.name === 'TimeIn' || e.target.name === 'TimeOut') {
+                const timeInInput  = document.querySelector('input[name="TimeIn"]');
+                const timeOutInput = document.querySelector('input[name="TimeOut"]');
+                const hoursDisplay = document.querySelector('.total-hours');
+                if (timeInInput && timeOutInput && hoursDisplay) {
+                    hoursDisplay.textContent = `Total Hours: ${calculateHours(timeInInput.value, timeOutInput.value)}`;
+                }
+            }
+        });
     </script>
+
+    <!-- ✅ SignalR for Real-Time Badge Updates -->
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    @if (User?.Identity?.IsAuthenticated == true)
+    {
+        <script>
+            (function() {
+                const connection = new signalR.HubConnectionBuilder()
+                    .withUrl("/chatHub")
+                    .withAutomaticReconnect()
+                    .build();
+
+                connection.on("UpdateUnreadBadge", function (count) {
+                    const badges = document.querySelectorAll('.notification-badge');
+                    badges.forEach(badge => {
+                        if (count > 0) {
+                            badge.textContent = count;
+                            badge.style.display = 'inline-block';
+                        } else {
+                            badge.style.display = 'none';
+                        }
+                    });
+                });
+
+                connection.start()
+                    .then(() => console.log("SignalR Connected - Badge updates enabled"))
+                    .catch(err => console.error("SignalR Error:", err));
+            })();
+        </script>
+    }
 
     @await RenderSectionAsync("Scripts", required: false)
 

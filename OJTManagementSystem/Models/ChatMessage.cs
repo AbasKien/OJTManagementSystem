@@ -18,6 +18,11 @@ namespace OJTManagementSystem.Models
 
         public DateTime SentAt { get; set; } = DateTime.Now;
 
+        // ✅ NEW: Read receipt fields
+        public bool IsRead { get; set; } = false;
+
+        public DateTime? ReadAt { get; set; }
+
         // ═══════════════════════════════════════════════════════════
         // NAVIGATION PROPERTIES
         // ═══════════════════════════════════════════════════════════

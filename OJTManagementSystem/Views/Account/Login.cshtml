@@ -14,8 +14,34 @@
             </div>
 
             <div class="card-body p-4">
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-1"></i> @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-1"></i> @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                @if (TempData["InfoMessage"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="fas fa-envelope me-1"></i> @TempData["InfoMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
                 <form method="post" asp-action="Login" novalidate>
-                    <div asp-validation-summary="All" class="small text-muted"></div>
+                    <div asp-validation-summary="All" class="small text-danger mb-2"></div>
+
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label fw-bold">Email Address</label>
                         <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
@@ -28,18 +54,21 @@
                         <span asp-validation-for="Password" class="text-danger small"></span>
                     </div>
 
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMe" asp-for="RememberMe" />
-                        <label class="form-check-label" for="rememberMe">
-                            Remember me
-                        </label>
+                    @* Remember Me row with Forgot Password on the right *@
+                    <div class="mb-3 d-flex align-items-center justify-content-between">
+                        <div class="form-check mb-0">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" asp-for="RememberMe" />
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="/Account/ForgotPassword" class="forgot-link">
+                            <i class="fas fa-key me-1"></i>Forgot Password?
+                        </a>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 mb-3 fw-bold">
                         <i class="fas fa-lock-open"></i> Login
                     </button>
                 </form>
-
 
                 <div class="text-center">
                     <p class="mb-2">Don't have an account?</p>
@@ -83,5 +112,18 @@
             background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+        }
+
+    .forgot-link {
+        font-size: 0.85rem;
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+        .forgot-link:hover {
+            color: #0a58ca;
+            text-decoration: underline;
         }
 </style>

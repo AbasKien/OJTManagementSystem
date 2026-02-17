@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using OJTManagementSystem.Dtos;
 using OJTManagementSystem.Enums;
 using OJTManagementSystem.Helpers;
@@ -43,7 +44,33 @@ namespace OJTManagementSystem.Controllers
         }
 
         // ============================================================
-        // HELPER METHODS
+        // ACTION FILTER - SET UNREAD MESSAGE COUNT FOR SIDEBAR BADGE
+        // ============================================================
+
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    // ✅ Use proper unread count methods from service
+                    int unreadPrivate = await _chatService.GetUnreadMessageCountAsync(user.Id);
+                    int unreadGroup = await _groupChatService.GetUnreadGroupMessageCountAsync(user.Id);
+
+                    ViewBag.UnreadCount = unreadPrivate + unreadGroup;
+                }
+            }
+            catch
+            {
+                ViewBag.UnreadCount = 0;
+            }
+
+            await next();
+        }
+
+        // ============================================================
+        // HELPER METHODS  ← FIX 1: Only ONE copy of these two methods
         // ============================================================
 
         private async Task<Supervisor> GetCurrentSupervisorAsync()
@@ -62,6 +89,17 @@ namespace OJTManagementSystem.Controllers
                 return null;
 
             return await _internService.FindOrCreateSupervisorAsync(user.Id);
+        }
+
+        private string GetFullErrorMessage(Exception ex)
+        {
+            var messages = new List<string>();
+            while (ex != null)
+            {
+                messages.Add(ex.Message);
+                ex = ex.InnerException;
+            }
+            return string.Join(" → ", messages);
         }
 
         // ============================================================
@@ -106,6 +144,77 @@ namespace OJTManagementSystem.Controllers
                     Interns = myInterns
                 };
 
+                // ============================================================
+                // ✅ FIXED: CHECK FOR NEW MESSAGES EVERY TIME
+                // No more "once per session" blocking!
+                // ============================================================
+                try
+                {
+                    var user = await _userManager.GetUserAsync(User);
+
+                    // Get last seen timestamp
+                    var lastSeenStr = HttpContext.Session.GetString($"LastSeen_{user.Id}");
+                    var lastSeenDate = lastSeenStr != null
+                        ? DateTime.Parse(lastSeenStr)
+                        : DateTime.MinValue;
+
+                    // Count NEW private messages
+                    var conversations = await _chatService.GetUserConversationsAsync(user.Id);
+                    int newPrivateMessages = 0;
+
+                    foreach (var conv in conversations)
+                    {
+                        var messages = await _chatService.GetMessagesByConversationIdAsync(conv.Id);
+                        newPrivateMessages += messages.Count(m =>
+                            m.SenderId != user.Id &&
+                            m.SentAt > lastSeenDate);
+                    }
+
+                    // Count NEW group messages
+                    var groupChats = await _groupChatService.GetUserGroupChatsAsync(user.Id);
+                    int newGroupMessages = 0;
+
+                    foreach (var group in groupChats)
+                    {
+                        var groupMessages = await _groupChatService.GetGroupChatMessagesAsync(group.GroupChatId);
+                        newGroupMessages += groupMessages.Count(m =>
+                            m.SenderId != user.Id &&
+                            m.CreatedAt > lastSeenDate);
+                    }
+
+                    int totalNew = newPrivateMessages + newGroupMessages;
+
+                    // ✅ SHOW NOTIFICATION IF THERE ARE NEW MESSAGES (every time!)
+                    if (totalNew > 0)
+                    {
+                        string messageText = "";
+
+                        if (newPrivateMessages > 0 && newGroupMessages > 0)
+                        {
+                            messageText = $"You have {newPrivateMessages} new private message{(newPrivateMessages > 1 ? "s" : "")} and {newGroupMessages} new group message{(newGroupMessages > 1 ? "s" : "")}.";
+                        }
+                        else if (newPrivateMessages > 0)
+                        {
+                            messageText = $"You have {newPrivateMessages} new private message{(newPrivateMessages > 1 ? "s" : "")}.";
+                        }
+                        else
+                        {
+                            messageText = $"You have {newGroupMessages} new group chat message{(newGroupMessages > 1 ? "s" : "")}.";
+                        }
+
+                        NotificationHelper.ShowInfoWithLink(
+                            this,
+                            message: messageText,
+                            linkUrl: "/Supervisor/AllChats",
+                            linkText: "View Messages"
+                        );
+                    }
+                }
+                catch
+                {
+                    // Silently skip if chat check fails — don't break Dashboard
+                }
+
                 return View(model);
             }
             catch (Exception ex)
@@ -119,9 +228,6 @@ namespace OJTManagementSystem.Controllers
         // CHAT & MESSAGING
         // ============================================================
 
-        /// <summary>
-        /// Display all chats (both private and group chats)
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> AllChats()
         {
@@ -129,10 +235,7 @@ namespace OJTManagementSystem.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
 
-                // Get group chats
                 var groupChats = await _groupChatService.GetUserGroupChatsAsync(user.Id);
-
-                // Get private conversations
                 var conversations = await _chatService.GetUserConversationsAsync(user.Id);
                 var privateChats = new List<PrivateChatViewModel>();
 
@@ -142,7 +245,6 @@ namespace OJTManagementSystem.Controllers
                     var otherUser = await _userManager.FindByIdAsync(otherUserId);
                     var messages = await _chatService.GetMessagesByConversationIdAsync(conv.Id);
 
-                    // Determine role
                     var roles = await _userManager.GetRolesAsync(otherUser);
                     var role = roles.FirstOrDefault() ?? "User";
 
@@ -160,7 +262,8 @@ namespace OJTManagementSystem.Controllers
                             ReceiverName = otherUser.FullName,
                             MessageContent = m.Content,
                             CreatedAt = m.SentAt,
-                            IsRead = false
+                            IsRead = m.IsRead,
+ReadAt = m.ReadAt
                         }).ToList()
                     });
                 }
@@ -172,6 +275,11 @@ namespace OJTManagementSystem.Controllers
                     UnreadMessageCount = 0
                 };
 
+                // ✅ CRITICAL FIX: Mark all messages as "read" - update BOTH timestamps
+                var now = DateTime.Now.ToString("o");
+                HttpContext.Session.SetString($"LastVisitedMessages_{user.Id}", now);
+                HttpContext.Session.SetString($"LastSeen_{user.Id}", now);
+
                 return View(model);
             }
             catch (Exception ex)
@@ -181,9 +289,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Display messages (private chat)
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Messages(string userId = null)
         {
@@ -193,7 +298,6 @@ namespace OJTManagementSystem.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    // Show all conversations
                     var conversations = await _chatService.GetUserConversationsAsync(currentUser.Id);
                     var allMessages = new List<ChatMessageViewModel>();
 
@@ -218,7 +322,8 @@ namespace OJTManagementSystem.Controllers
                                 ReceiverName = receiver?.FullName,
                                 MessageContent = msg.Content,
                                 CreatedAt = msg.SentAt,
-                                IsRead = false
+                                IsRead = msg.IsRead,      // ✅ FIXED: Changed from 'm' to 'msg'
+                                ReadAt = msg.ReadAt       // ✅ FIXED: Changed from 'm' to 'msg'
                             });
                         }
                     }
@@ -232,7 +337,6 @@ namespace OJTManagementSystem.Controllers
                 }
                 else
                 {
-                    // Show specific conversation
                     return RedirectToAction("PrivateChat", new { userId });
                 }
             }
@@ -243,9 +347,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Display a specific private chat conversation
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> PrivateChat(string userId)
         {
@@ -260,11 +361,15 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("AllChats");
                 }
 
-                // Get or create conversation
                 var conversation = await _chatService.GetOrCreatePrivateConversationAsync(currentUser.Id, userId);
                 var messages = await _chatService.GetMessagesByConversationIdAsync(conversation.Id);
 
-                // Get role
+                // ✅ Mark messages as read
+                await _chatService.MarkMessagesAsReadAsync(conversation.Id, currentUser.Id);
+
+                // ✅ ADD THIS LINE FOR SIGNALR
+                ViewBag.ConversationId = conversation.Id;
+
                 var roles = await _userManager.GetRolesAsync(otherUser);
                 var role = roles.FirstOrDefault() ?? "User";
 
@@ -273,16 +378,17 @@ namespace OJTManagementSystem.Controllers
                     OtherUserId = userId,
                     OtherUserName = otherUser.FullName,
                     OtherUserRole = role,
-                    Messages = messages.Select(m => new ChatMessageViewModel
+                    Messages = messages.Select(msg => new ChatMessageViewModel
                     {
-                        ChatMessageId = m.Id,
-                        SenderId = m.SenderId,
-                        SenderName = m.SenderId == currentUser.Id ? currentUser.FullName : otherUser.FullName,
+                        ChatMessageId = msg.Id,
+                        SenderId = msg.SenderId,
+                        SenderName = msg.SenderId == currentUser.Id ? currentUser.FullName : otherUser.FullName,
                         ReceiverId = userId,
                         ReceiverName = otherUser.FullName,
-                        MessageContent = m.Content,
-                        CreatedAt = m.SentAt,
-                        IsRead = false
+                        MessageContent = msg.Content,
+                        CreatedAt = msg.SentAt,
+                        IsRead = msg.IsRead,
+                        ReadAt = msg.ReadAt
                     }).ToList()
                 };
 
@@ -295,9 +401,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Send a private message
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendPrivateMessage(string receiverId, string messageContent)
@@ -306,35 +409,29 @@ namespace OJTManagementSystem.Controllers
             {
                 if (string.IsNullOrWhiteSpace(messageContent))
                 {
-                    TempData["Error"] = "Message cannot be empty.";
+                    NotificationHelper.ShowError(this, "Message cannot be empty.");
                     return RedirectToAction("PrivateChat", new { userId = receiverId });
                 }
 
                 var user = await _userManager.GetUserAsync(User);
                 await _chatService.SendPrivateMessageAsync(user.Id, receiverId, messageContent);
+                NotificationHelper.NotifyMessageSent(this);
 
-                TempData["Success"] = "Message sent successfully.";
                 return RedirectToAction("PrivateChat", new { userId = receiverId });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return RedirectToAction("PrivateChat", new { userId = receiverId });
             }
         }
 
-        /// <summary>
-        /// Display create group chat form
-        /// </summary>
         [HttpGet]
         public IActionResult CreateGroupChat()
         {
             return View(new CreateGroupChatViewModel());
         }
 
-        /// <summary>
-        /// Create a new group chat (e.g., for all assigned interns)
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateGroupChat(CreateGroupChatViewModel viewModel)
@@ -360,9 +457,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Create a group chat with all assigned interns automatically
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateGroupChatWithInterns()
@@ -378,7 +472,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                // Get all interns assigned to this supervisor
                 var myInterns = await _internService.GetSupervisorInternsAsync(supervisor.SupervisorId);
 
                 if (!myInterns.Any())
@@ -387,7 +480,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("ManageInterns");
                 }
 
-                // Create group chat
                 var dto = new CreateGroupChatDto
                 {
                     GroupName = $"{user.FullName}'s Team",
@@ -396,7 +488,6 @@ namespace OJTManagementSystem.Controllers
 
                 var groupChat = await _groupChatService.CreateGroupChatAsync(user.Id, dto);
 
-                // Add all interns to the group
                 foreach (var intern in myInterns)
                 {
                     try
@@ -419,9 +510,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Display a specific group chat
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GroupChat(int groupChatId)
         {
@@ -429,7 +517,6 @@ namespace OJTManagementSystem.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
 
-                // Check if user is a member
                 var isMember = await _groupChatService.IsMemberAsync(groupChatId, user.Id);
                 if (!isMember)
                 {
@@ -439,29 +526,18 @@ namespace OJTManagementSystem.Controllers
 
                 var groupChat = await _groupChatService.GetGroupChatByIdAsync(groupChatId);
 
-                // ═══════════════════════════════════════════════════════════
-                // ✅ ADD THIS ENTIRE SECTION - Get available interns
-                // ═══════════════════════════════════════════════════════════
-
                 try
                 {
-                    // Get current supervisor
                     var supervisor = await GetCurrentSupervisorAsync();
 
                     if (supervisor != null)
                     {
-                        // Get all assigned interns for this supervisor
                         var myInterns = await _internService.GetSupervisorInternsAsync(supervisor.SupervisorId);
-
-                        // Get current members' UserIds
                         var currentMemberIds = groupChat.Members.Select(m => m.UserId).ToList();
-
-                        // Filter out interns who are already members
                         var availableInterns = myInterns
                             .Where(i => !currentMemberIds.Contains(i.UserId))
                             .ToList();
 
-                        // Pass available interns to view via ViewBag
                         ViewBag.AvailableUsers = availableInterns.Select(i => new
                         {
                             UserId = i.UserId,
@@ -471,13 +547,11 @@ namespace OJTManagementSystem.Controllers
                     }
                     else
                     {
-                        // If supervisor is null, no interns available
                         ViewBag.AvailableUsers = new List<object>();
                     }
                 }
                 catch
                 {
-                    // If there's an error getting interns, set empty list
                     ViewBag.AvailableUsers = new List<object>();
                 }
 
@@ -490,9 +564,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Send a message in a group chat
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendGroupMessage(int groupChatId, string messageContent)
@@ -501,7 +572,7 @@ namespace OJTManagementSystem.Controllers
             {
                 if (string.IsNullOrWhiteSpace(messageContent))
                 {
-                    TempData["Error"] = "Message cannot be empty.";
+                    NotificationHelper.ShowError(this, "Message cannot be empty.");
                     return RedirectToAction("GroupChat", new { groupChatId });
                 }
 
@@ -509,20 +580,17 @@ namespace OJTManagementSystem.Controllers
                 var dto = new SendGroupChatMessageDto { MessageContent = messageContent };
 
                 await _groupChatService.SendMessageAsync(groupChatId, user.Id, dto);
+                NotificationHelper.NotifyMessageSent(this);
 
-                TempData["Success"] = "Message sent successfully.";
                 return RedirectToAction("GroupChat", new { groupChatId });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return RedirectToAction("GroupChat", new { groupChatId });
             }
         }
 
-        /// <summary>
-        /// Add a member to a group chat
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddGroupChatMember(int groupChatId, string userId)
@@ -570,7 +638,6 @@ namespace OJTManagementSystem.Controllers
                 return RedirectToAction("Dashboard");
             }
         }
-
 
         [HttpGet]
         public async Task<IActionResult> AvailableInterns()
@@ -670,7 +737,8 @@ namespace OJTManagementSystem.Controllers
         {
             try
             {
-                if (model.IsApproved)
+                // ✅ FIX: Use model.Status == DtrStatus.Approved instead of model.IsApproved
+                if (model.Status == DtrStatus.Approved)
                 {
                     ModelState.Remove("RejectionReason");
                 }
@@ -690,23 +758,29 @@ namespace OJTManagementSystem.Controllers
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage));
 
-                    TempData["Error"] = $"Validation Error: {errors}";
-                    return View(model);
+                    NotificationHelper.ShowError(this, $"Validation Error: {errors}");
+                    return View("ApproveDtr", model);
                 }
+
+                var dtr = await _dtrService.GetDtrByIdAsync(model.DtrId);
+                var dateStr = dtr.RecordDate.ToString("MMM dd, yyyy");
 
                 var dto = MappingHelper.MapApproveDtrViewModelToDto(model);
                 await _dtrService.ApproveDtrAsync(dto);
 
-                TempData["Success"] = $"DTR {(model.IsApproved ? "approved" : "rejected")} successfully.";
+                if (model.Status == DtrStatus.Approved)
+                    NotificationHelper.ShowSuccess(this, $"DTR for {dateStr} approved successfully!");
+                else
+                    NotificationHelper.ShowWarning(this, $"DTR for {dateStr} has been rejected.");
+
                 return RedirectToAction("ViewPendingDtrs");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
-                return View(model);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
+                return View("ApproveDtr", model);
             }
         }
-
 
         // ============================================================
         // LEAVE REQUEST MANAGEMENT
@@ -763,46 +837,55 @@ namespace OJTManagementSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ApproveLeaveRequest(ApproveLeaveRequestViewModel model)
+        public async Task<IActionResult> ApproveLeave(ApproveLeaveRequestViewModel model)
         {
             try
             {
                 if (model.Status == LeaveStatus.Approved)
+                {
+                    // Approving: only ApprovedBy is required, clear RejectionReason
                     ModelState.Remove("RejectionReason");
-                else if (model.Status == LeaveStatus.Rejected)
+                    model.RejectionReason = string.Empty;
+                }
+                else
+                {
+                    // Rejecting: only RejectionReason is required, clear ApprovedBy
                     ModelState.Remove("ApprovedBy");
+                    model.ApprovedBy = string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(model.RejectionReason))
+                    {
+                        ModelState.AddModelError("RejectionReason", "Rejection reason is required when rejecting a leave request.");
+                    }
+                }
 
                 if (!ModelState.IsValid)
                 {
                     var errors = string.Join("; ", ModelState.Values
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage));
-                    TempData["Error"] = $"Validation Error: {errors}";
-                    return View(model);
+
+                    NotificationHelper.ShowError(this, $"Validation Error: {errors}");
+                    return View("ApproveLeaveRequest", model);
                 }
 
-                if (model.Status == LeaveStatus.Rejected && string.IsNullOrWhiteSpace(model.RejectionReason))
-                {
-                    ModelState.AddModelError("RejectionReason", "Rejection reason is required when rejecting a leave request");
-                    return View(model);
-                }
-
-                if (model.Status == LeaveStatus.Approved && string.IsNullOrWhiteSpace(model.ApprovedBy))
-                {
-                    var user = await _userManager.GetUserAsync(User);
-                    model.ApprovedBy = user?.FullName ?? "Supervisor";
-                }
+                var leave = await _leaveRequestService.GetLeaveRequestByIdAsync(model.LeaveRequestId);
+                var dateRange = $"{leave.StartDate:MMM dd} - {leave.EndDate:MMM dd, yyyy}";
 
                 var dto = MappingHelper.MapApproveLeaveRequestViewModelToDto(model);
                 await _leaveRequestService.ApproveLeaveRequestAsync(dto);
 
-                TempData["Success"] = $"Leave request {(model.Status == LeaveStatus.Approved ? "approved" : "rejected")} successfully.";
+                if (model.Status == LeaveStatus.Approved)
+                    NotificationHelper.ShowSuccess(this, $"Leave request for {dateRange} approved!");
+                else
+                    NotificationHelper.ShowWarning(this, $"Leave request for {dateRange} has been rejected.");
+
                 return RedirectToAction("ViewPendingLeaves");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
-                return View(model);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
+                return View("ApproveLeaveRequest", model);
             }
         }
 
@@ -822,6 +905,7 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("ManageInterns");
                 }
 
+                // FIX 2: Use EvaluateInternViewModel consistently (matches the GET view)
                 var model = new EvaluateInternViewModel
                 {
                     InternId = internId
@@ -839,36 +923,52 @@ namespace OJTManagementSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EvaluateIntern(EvaluateInternViewModel model)
+        public async Task<IActionResult> SubmitEvaluation(EvaluateInternViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    var errors = string.Join("; ", ModelState.Values
-                        .SelectMany(v => v.Errors)
-                        .Select(e => e.ErrorMessage));
-                    TempData["Error"] = $"Validation Error: {errors}";
-                    return View(model);
+                    NotificationHelper.ShowError(this, "Please complete all evaluation criteria.");
+                    return View("EvaluateIntern", model);
                 }
 
+                // ✅ FIX: Fetch supervisor so SupervisorId is included in the DTO
+                // Without this the FK_Evaluations_Supervisors constraint fails
                 var supervisor = await GetCurrentSupervisorAsync();
                 if (supervisor == null)
                 {
-                    TempData["Error"] = "Supervisor profile not found.";
-                    return RedirectToAction("ManageInterns");
+                    NotificationHelper.ShowError(this, "Supervisor profile not found. Cannot submit evaluation.");
+                    return View("EvaluateIntern", model);
                 }
 
-                var dto = MappingHelper.MapEvaluateInternViewModelToDto(model);
+                var dto = new SubmitEvaluationDto
+                {
+                    InternId = model.InternId,
+                    TechnicalCompetence = model.TechnicalCompetence,
+                    Punctuality = model.Punctuality,
+                    Cooperation = model.Cooperation,
+                    Communication = model.Communication,
+                    QualityOfWork = model.QualityOfWork,
+                    Reliability = model.Reliability,
+                    Comments = model.Comments
+                };
+
+                // ✅ SupervisorId is passed as first argument, NOT inside the DTO
+                // This matches EvaluationService.SubmitEvaluationAsync(int supervisorId, SubmitEvaluationDto dto)
                 await _evaluationService.SubmitEvaluationAsync(supervisor.SupervisorId, dto);
 
-                TempData["Success"] = "Evaluation submitted successfully.";
+                var intern = await _internService.GetInternByIdAsync(model.InternId);
+                var internUser = await _userManager.FindByIdAsync(intern.UserId);
+
+                NotificationHelper.NotifyEvaluationSubmitted(this, internUser.FullName);
+
                 return RedirectToAction("ManageInterns");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
-                return View(model);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
+                return View("EvaluateIntern", model);
             }
         }
 
@@ -909,7 +1009,7 @@ namespace OJTManagementSystem.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 var issuedBy = user?.FullName ?? "Supervisor";
 
-                var certificate = await _certificateService.GenerateCertificateAsync(internId, issuedBy);
+                await _certificateService.GenerateCertificateAsync(internId, issuedBy);
 
                 TempData["Success"] = $"Certificate generated successfully for {intern.FullName}.";
                 return RedirectToAction("ViewCertificate", new { internId });
@@ -985,7 +1085,7 @@ namespace OJTManagementSystem.Controllers
                 }
 
                 await _groupChatService.DeleteGroupChatAsync(groupChatId, user.Id);
-                TempData["Success"] = $"Group chat deleted successfully.";
+                TempData["Success"] = "Group chat deleted successfully.";
                 return RedirectToAction("AllChats");
             }
             catch (Exception ex)
@@ -993,21 +1093,6 @@ namespace OJTManagementSystem.Controllers
                 TempData["Error"] = GetFullErrorMessage(ex);
                 return RedirectToAction("AllChats");
             }
-        }
-
-        // ============================================================
-        // HELPER METHODS
-        // ============================================================
-
-        private string GetFullErrorMessage(Exception ex)
-        {
-            var messages = new List<string>();
-            while (ex != null)
-            {
-                messages.Add(ex.Message);
-                ex = ex.InnerException;
-            }
-            return string.Join(" → ", messages);
         }
     }
 }

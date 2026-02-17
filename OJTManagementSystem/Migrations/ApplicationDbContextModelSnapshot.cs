@@ -17,7 +17,7 @@ namespace OJTManagementSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.2")
+                .HasAnnotation("ProductVersion", "10.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -307,6 +307,12 @@ namespace OJTManagementSystem.Migrations
                     b.Property<int>("ConversationId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ReadAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SenderId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -505,6 +511,9 @@ namespace OJTManagementSystem.Migrations
                     b.Property<DateTime>("JoinedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("LastReadAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -535,8 +544,8 @@ namespace OJTManagementSystem.Migrations
 
                     b.Property<string>("MessageContent")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("SenderId")
                         .IsRequired()
@@ -549,6 +558,34 @@ namespace OJTManagementSystem.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("GroupChatMessages");
+                });
+
+            modelBuilder.Entity("OJTManagementSystem.Models.GroupChatMessageReadReceipt", b =>
+                {
+                    b.Property<int>("GroupChatMessageReadReceiptId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupChatMessageReadReceiptId"));
+
+                    b.Property<int>("GroupChatMessageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReadAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("GroupChatMessageReadReceiptId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("GroupChatMessageId", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("GroupChatMessageReadReceipts");
                 });
 
             modelBuilder.Entity("OJTManagementSystem.Models.Intern", b =>
@@ -873,6 +910,25 @@ namespace OJTManagementSystem.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("OJTManagementSystem.Models.GroupChatMessageReadReceipt", b =>
+                {
+                    b.HasOne("OJTManagementSystem.Models.GroupChatMessage", "Message")
+                        .WithMany("ReadReceipts")
+                        .HasForeignKey("GroupChatMessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OJTManagementSystem.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Message");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("OJTManagementSystem.Models.Intern", b =>
                 {
                     b.HasOne("OJTManagementSystem.Models.Supervisor", "Supervisor")
@@ -932,6 +988,11 @@ namespace OJTManagementSystem.Migrations
                     b.Navigation("Members");
 
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("OJTManagementSystem.Models.GroupChatMessage", b =>
+                {
+                    b.Navigation("ReadReceipts");
                 });
 
             modelBuilder.Entity("OJTManagementSystem.Models.Intern", b =>

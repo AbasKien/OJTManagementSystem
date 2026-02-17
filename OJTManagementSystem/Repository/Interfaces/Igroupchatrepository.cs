@@ -16,5 +16,13 @@ namespace OJTManagementSystem.Repository.Interfaces
         Task<bool> IsMemberAsync(int groupChatId, string userId);
         Task<GroupChatMessage> AddMessageAsync(int groupChatId, string senderId, string messageContent);
         Task<List<GroupChatMember>> GetMembersAsync(int groupChatId);
+
+        // ✅ Read receipt methods
+        Task MarkGroupChatAsReadAsync(int groupChatId, string userId);
+        Task<int> GetUnreadGroupMessageCountAsync(string userId);
+        Task<int> GetUnreadGroupMessageCountForChatAsync(int groupChatId, string userId);
+        Task AddReadReceiptAsync(int messageId, string userId);
+        Task<bool> HasUserReadMessageAsync(int messageId, string userId);
+        Task<int> GetMessageReadCountAsync(int messageId);
     }
 }

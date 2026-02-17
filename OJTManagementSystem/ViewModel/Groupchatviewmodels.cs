@@ -15,6 +15,10 @@ namespace OJTManagementSystem.ViewModel
         public DateTime CreatedAt { get; set; }
         public int MemberCount { get; set; }
         public int MessageCount { get; set; }
+
+        // ✅ NEW: Unread message count
+        public int UnreadMessageCount { get; set; }
+
         public List<GroupChatMemberViewModel> Members { get; set; } = new();
         public List<GroupChatMessageViewModel> Messages { get; set; } = new();
     }
@@ -42,10 +46,14 @@ namespace OJTManagementSystem.ViewModel
         public string UserName { get; set; }
         public bool IsAdmin { get; set; }
         public DateTime JoinedAt { get; set; }
+
+        // ✅ NEW: Last read timestamp
+        public DateTime? LastReadAt { get; set; }
     }
 
     /// <summary>
     /// ViewModel for a message in a group chat
+    /// ✅ UPDATED with read receipt info
     /// </summary>
     public class GroupChatMessageViewModel
     {
@@ -55,6 +63,12 @@ namespace OJTManagementSystem.ViewModel
         public string SenderName { get; set; }
         public string MessageContent { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        // ✅ NEW: Read receipt information
+        public int ReadCount { get; set; }
+        public int TotalMembers { get; set; }
+        public bool IsReadByCurrentUser { get; set; }
+        public List<string> ReadByUserNames { get; set; } = new();
     }
 
     /// <summary>
@@ -66,6 +80,9 @@ namespace OJTManagementSystem.ViewModel
         public string OtherUserName { get; set; }
         public string OtherUserRole { get; set; }
         public List<ChatMessageViewModel> Messages { get; set; } = new();
+
+        // ✅ NEW: Unread count for this conversation
+        public int UnreadCount { get; set; }
     }
 
     /// <summary>
@@ -76,5 +93,9 @@ namespace OJTManagementSystem.ViewModel
         public List<GroupChatViewModel> GroupChats { get; set; } = new();
         public List<PrivateChatViewModel> PrivateChats { get; set; } = new();
         public int UnreadMessageCount { get; set; }
+
+        // ✅ NEW: Separate counts
+        public int UnreadPrivateCount { get; set; }
+        public int UnreadGroupCount { get; set; }
     }
 }

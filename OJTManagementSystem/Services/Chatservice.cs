@@ -40,7 +40,8 @@ namespace OJTManagementSystem.Services
             {
                 ConversationId = conversation.Id,
                 SenderId = senderId,
-                Content = content
+                Content = content,
+                IsRead = false  // ✅ NEW: Mark as unread by default
             };
 
             await _chatRepository.AddMessageAsync(message);
@@ -54,6 +55,25 @@ namespace OJTManagementSystem.Services
         public async Task<List<Conversation>> GetUserConversationsAsync(string userId)
         {
             return await _chatRepository.GetUserConversationsAsync(userId);
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        // ✅ NEW: READ RECEIPT METHODS
+        // ═══════════════════════════════════════════════════════════
+
+        public async Task MarkMessagesAsReadAsync(int conversationId, string userId)
+        {
+            await _chatRepository.MarkMessagesAsReadAsync(conversationId, userId);
+        }
+
+        public async Task<int> GetUnreadMessageCountAsync(string userId)
+        {
+            return await _chatRepository.GetUnreadMessageCountAsync(userId);
+        }
+
+        public async Task<int> GetUnreadMessageCountForConversationAsync(int conversationId, string userId)
+        {
+            return await _chatRepository.GetUnreadMessageCountForConversationAsync(conversationId, userId);
         }
     }
 }

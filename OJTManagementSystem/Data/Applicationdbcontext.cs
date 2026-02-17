@@ -22,14 +22,13 @@ namespace OJTManagementSystem.Data
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
 
-
-
         // ═══════════════════════════════════════════════════════════
         // ✅ NEW DBSETS FOR GROUP CHAT
         // ═══════════════════════════════════════════════════════════
         public DbSet<GroupChat> GroupChats { get; set; }
         public DbSet<GroupChatMember> GroupChatMembers { get; set; }
         public DbSet<GroupChatMessage> GroupChatMessages { get; set; }
+        public DbSet<GroupChatMessageReadReceipt> GroupChatMessageReadReceipts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,7 +36,7 @@ namespace OJTManagementSystem.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
             // ═══════════════════════════════════════════════════════════
-            // EXISTING CONFIGURATIONS (DO NOT CHANGE)
+            // EXISTING CONFIGURATIONS
             // ═══════════════════════════════════════════════════════════
             modelBuilder.Entity<ApplicationUser>()
                 .HasKey(u => u.Id);
@@ -90,21 +89,14 @@ namespace OJTManagementSystem.Data
                 .HasForeignKey(l => l.InternId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // ═══════════════════════════════════════════════════════════
-            // ✅ CORRECTED: ChatMessage configuration (ONLY Sender)
-            // ═══════════════════════════════════════════════════════════
             modelBuilder.Entity<ChatMessage>()
                 .HasOne(c => c.Sender)
                 .WithMany(u => u.SentMessages)
                 .HasForeignKey(c => c.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // ❌ REMOVED: Configuration for Receiver/ReceiverId
-            // These properties don't exist in ChatMessage model
-            // The receiver is determined from the Conversation relationship
-
             // ═══════════════════════════════════════════════════════════
-            // ✅ NEW CONFIGURATIONS FOR GROUP CHAT
+            // ✅ GROUP CHAT CONFIGURATIONS
             // ═══════════════════════════════════════════════════════════
 
             // GroupChat → Creator relationship
@@ -114,18 +106,18 @@ namespace OJTManagementSystem.Data
                 .HasForeignKey(g => g.CreatedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // GroupChat → GroupChatMembers relationship
+            // GroupChat → Members relationship
             modelBuilder.Entity<GroupChat>()
                 .HasMany(g => g.Members)
                 .WithOne(m => m.GroupChat)
                 .HasForeignKey(m => m.GroupChatId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // GroupChat → GroupChatMessages relationship
+            // GroupChat → Messages relationship
             modelBuilder.Entity<GroupChat>()
                 .HasMany(g => g.Messages)
-                .WithOne(m => m.GroupChat)
-                .HasForeignKey(m => m.GroupChatId)
+                .WithOne(msg => msg.GroupChat)
+                .HasForeignKey(msg => msg.GroupChatId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // GroupChatMember → User relationship
@@ -135,16 +127,35 @@ namespace OJTManagementSystem.Data
                 .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // GroupChatMessage → Sender relationship
-            modelBuilder.Entity<GroupChatMessage>()
-                .HasOne(m => m.Sender)
-                .WithMany()
-                .HasForeignKey(m => m.SenderId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // GroupChatMember composite key (one user can only be member once per group)
+            // GroupChatMember unique constraint
             modelBuilder.Entity<GroupChatMember>()
                 .HasIndex(m => new { m.GroupChatId, m.UserId })
+                .IsUnique();
+
+            // GroupChatMessage → Sender relationship
+            modelBuilder.Entity<GroupChatMessage>()
+                .HasOne(msg => msg.Sender)
+                .WithMany()
+                .HasForeignKey(msg => msg.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // GroupChatMessage → ReadReceipts relationship
+            modelBuilder.Entity<GroupChatMessage>()
+                .HasMany(msg => msg.ReadReceipts)
+                .WithOne(r => r.Message)
+                .HasForeignKey(r => r.GroupChatMessageId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // GroupChatMessageReadReceipt → User relationship
+            modelBuilder.Entity<GroupChatMessageReadReceipt>()
+                .HasOne(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // GroupChatMessageReadReceipt unique constraint
+            modelBuilder.Entity<GroupChatMessageReadReceipt>()
+                .HasIndex(r => new { r.GroupChatMessageId, r.UserId })
                 .IsUnique();
         }
     }

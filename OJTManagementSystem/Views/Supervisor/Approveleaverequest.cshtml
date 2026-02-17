@@ -1,96 +1,171 @@
 ﻿@model OJTManagementSystem.ViewModel.ApproveLeaveRequestViewModel
 @using OJTManagementSystem.Enums
+
 @{
     ViewData["Title"] = "Approve Leave Request";
+    bool isReject = Model.Status == LeaveStatus.Rejected;
 }
 
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <h3>Approve Leave Request</h3>
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Approve Leave Request</h3>
             </div>
+
             <div class="card-body">
+
+                <!-- INTERN INFO -->
                 <div class="alert alert-info">
-                    <strong>Intern:</strong> @Model.InternName<br>
+                    <strong>Intern:</strong> @Model.InternName <br />
                     <strong>Submitted:</strong> @Model.CreatedAt.ToString("MMMM dd, yyyy")
                 </div>
 
-                <h5>Leave Request Details</h5>
+                <!-- LEAVE DETAILS -->
+                <h5 class="mb-3">Leave Request Details</h5>
+
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <p><strong>Leave Type:</strong> <span class="badge bg-info">@Model.LeaveTypeDisplay</span></p>
-                        <p><strong>Start Date:</strong> @Model.StartDate.ToString("MMMM dd, yyyy")</p>
-                        <p><strong>End Date:</strong> @Model.EndDate.ToString("MMMM dd, yyyy")</p>
+                        <p>
+                            <strong>Leave Type:</strong>
+                            <span class="badge bg-info">@Model.LeaveTypeDisplay</span>
+                        </p>
+                        <p>
+                            <strong>Start Date:</strong>
+                            @Model.StartDate.ToString("MMMM dd, yyyy")
+                        </p>
+                        <p>
+                            <strong>End Date:</strong>
+                            @Model.EndDate.ToString("MMMM dd, yyyy")
+                        </p>
                     </div>
+
                     <div class="col-md-6">
-                        <p><strong>Number of Days:</strong> @Model.NumberOfDays day(s)</p>
+                        <p>
+                            <strong>Number of Days:</strong>
+                            @Model.NumberOfDays day(s)
+                        </p>
+
                         <p>
                             <strong>Current Status:</strong>
-                            @switch (Model.CurrentStatus.ToString())
+                            @if (Model.CurrentStatus == LeaveStatus.Approved)
                             {
-                                case "Approved":
-                                    <span class="badge bg-success">@Model.CurrentStatus</span>
-                                    break;
-                                case "Pending":
-                                    <span class="badge bg-warning">@Model.CurrentStatus</span>
-                                    break;
-                                case "Rejected":
-                                    <span class="badge bg-danger">@Model.CurrentStatus</span>
-                                    break;
+                                <span class="badge bg-success">Approved</span>
+                            }
+                            else if (Model.CurrentStatus == LeaveStatus.Rejected)
+                            {
+                                <span class="badge bg-danger">Rejected</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">Pending</span>
                             }
                         </p>
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <!-- REASON -->
+                <div class="mb-4">
                     <h6>Reason for Leave:</h6>
-                    <p class="border p-3 rounded bg-light">@Model.Reason</p>
+                    <p class="border p-3 rounded bg-light">
+                        @Model.Reason
+                    </p>
                 </div>
 
-                @if (Model.CurrentStatus.ToString() != "Pending")
+                <!-- IF ALREADY PROCESSED -->
+                @if (Model.CurrentStatus != LeaveStatus.Pending)
                 {
                     <div class="alert alert-warning">
                         This leave request has already been processed.
                     </div>
-                }
 
-                @if (Model.CurrentStatus.ToString() == "Pending")
+                    <a asp-action="ViewPendingLeaves"
+                       asp-controller="Supervisor"
+                       class="btn btn-secondary">
+                        Back to Pending Leaves
+                    </a>
+                }
+                else
                 {
-                    <form method="post" asp-action="ApproveLeaveRequest" asp-controller="Supervisor">
+                    <!-- APPROVAL FORM -->
+                    <form method="post"
+                          asp-action="ApproveLeave"
+                          asp-controller="Supervisor">
+
                         @Html.AntiForgeryToken()
 
+                        <!-- DECISION -->
                         <div class="mb-3">
-                            <label class="form-label">Decision <span class="text-danger">*</span></label>
-                            <div>
-                                <div class="form-check">
-                                    <input asp-for="Status" class="form-check-input" type="radio" id="approve" value="@((int)LeaveStatus.Approved)" checked />
-                                    <label class="form-check-label" for="approve">
-                                        <strong class="text-success">Approve Leave Request</strong>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input asp-for="Status" class="form-check-input" type="radio" id="reject" value="@((int)LeaveStatus.Rejected)" />
-                                    <label class="form-check-label" for="reject">
-                                        <strong class="text-danger">Reject Leave Request</strong>
-                                    </label>
-                                </div>
+                            <label class="form-label">
+                                Decision <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="form-check">
+                                <input asp-for="Status"
+                                       class="form-check-input"
+                                       type="radio"
+                                       id="approve"
+                                       value="@((int)LeaveStatus.Approved)"
+                                       checked />
+                                <label class="form-check-label" for="approve">
+                                    <strong class="text-success">
+                                        Approve Leave Request
+                                    </strong>
+                                </label>
                             </div>
+
+                            <div class="form-check">
+                                <input asp-for="Status"
+                                       class="form-check-input"
+                                       type="radio"
+                                       id="reject"
+                                       value="@((int)LeaveStatus.Rejected)" />
+                                <label class="form-check-label" for="reject">
+                                    <strong class="text-danger">
+                                        Reject Leave Request
+                                    </strong>
+                                </label>
+                            </div>
+
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
 
+                        <!-- APPROVED BY -->
                         <div class="mb-3" id="approvedByDiv">
-                            <label asp-for="ApprovedBy" class="form-label">Approved By (Your Name) <span class="text-danger">*</span></label>
-                            <input asp-for="ApprovedBy" class="form-control" placeholder="Enter your full name" />
-                            <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+                            <label asp-for="ApprovedBy" class="form-label">
+                                Approved By (Your Name)
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <input asp-for="ApprovedBy"
+                                   class="form-control"
+                                   placeholder="Enter your full name" />
+
+                            <span asp-validation-for="ApprovedBy"
+                                  class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3" id="rejectionReasonDiv" style="display: none;">
-                            <label asp-for="RejectionReason" class="form-label">Rejection Reason <span class="text-danger">*</span></label>
-                            <textarea asp-for="RejectionReason" class="form-control" rows="3" placeholder="Please provide a reason for rejection..." disabled></textarea>
-                            <span asp-validation-for="RejectionReason" class="text-danger"></span>
+                        <!-- REJECTION REASON -->
+                        <div class="mb-3"
+                             id="rejectionReasonDiv"
+                             style="display:none;">
+                            <label asp-for="RejectionReason"
+                                   class="form-label">
+                                Rejection Reason
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <textarea asp-for="RejectionReason"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Please provide a reason for rejection...">
+                                </textarea>
+
+                            <span asp-validation-for="RejectionReason"
+                                  class="text-danger"></span>
                         </div>
 
+                        <!-- HIDDEN FIELDS -->
                         <input asp-for="LeaveRequestId" type="hidden" />
                         <input asp-for="InternId" type="hidden" />
                         <input asp-for="InternName" type="hidden" />
@@ -102,44 +177,42 @@
                         <input asp-for="CurrentStatus" type="hidden" />
                         <input asp-for="CreatedAt" type="hidden" />
 
+                        <!-- BUTTONS -->
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i> Submit Decision
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i>
+                                Submit Decision
                             </button>
-                            <a asp-action="ViewPendingLeaves" asp-controller="Supervisor" class="btn btn-secondary">
-                                <i class="bi bi-x-circle"></i> Cancel
+
+                            <a asp-action="ViewPendingLeaves"
+                               asp-controller="Supervisor"
+                               class="btn btn-secondary">
+                                Cancel
                             </a>
                         </div>
                     </form>
 
+                    <!-- JAVASCRIPT TOGGLE -->
                     <script>
-                        const approvedByField = document.getElementById('ApprovedBy');
+                        const approveRadio = document.getElementById('approve');
+                        const rejectRadio = document.getElementById('reject');
                         const approvedByDiv = document.getElementById('approvedByDiv');
-                        const rejectionReasonField = document.getElementById('RejectionReason');
-                        const rejectionReasonDiv = document.getElementById('rejectionReasonDiv');
+                        const rejectionDiv = document.getElementById('rejectionReasonDiv');
 
-                        document.getElementById('approve').addEventListener('change', function () {
+                        function showApprove() {
                             approvedByDiv.style.display = 'block';
-                            approvedByField.disabled = false; // Enable for validation
+                            rejectionDiv.style.display = 'none';
+                        }
 
-                            rejectionReasonDiv.style.display = 'none';
-                            rejectionReasonField.value = ''; // Clear rejection reason
-                            rejectionReasonField.disabled = true; // Disable so it won't validate
-                        });
-
-                        document.getElementById('reject').addEventListener('change', function () {
+                        function showReject() {
                             approvedByDiv.style.display = 'none';
-                            approvedByField.value = ''; // Clear approver name
-                            approvedByField.disabled = true; // Disable so it won't validate
+                            rejectionDiv.style.display = 'block';
+                        }
 
-                            rejectionReasonDiv.style.display = 'block';
-                            rejectionReasonField.disabled = false; // Enable for validation
-                        });
+                        approveRadio.addEventListener('change', showApprove);
+                        rejectRadio.addEventListener('change', showReject);
                     </script>
-                }
-                else
-                {
-                    <a asp-action="ViewPendingLeaves" asp-controller="Supervisor" class="btn btn-secondary">Back to Pending Leaves</a>
                 }
             </div>
         </div>

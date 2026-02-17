@@ -52,6 +52,9 @@ namespace OJTManagementSystem.Models
 
         public bool IsAdmin { get; set; } = false;
 
+        // ✅ NEW: Track last read message for each member
+        public DateTime? LastReadAt { get; set; }
+
         // Navigation properties
         [ForeignKey(nameof(GroupChatId))]
         public virtual GroupChat GroupChat { get; set; }
@@ -75,10 +78,10 @@ namespace OJTManagementSystem.Models
         public string SenderId { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [MaxLength(2000)]
         public string MessageContent { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(GroupChatId))]
@@ -86,5 +89,33 @@ namespace OJTManagementSystem.Models
 
         [ForeignKey(nameof(SenderId))]
         public virtual ApplicationUser Sender { get; set; }
+
+        // ✅ CRITICAL: Add this navigation property for read receipts
+        public virtual ICollection<GroupChatMessageReadReceipt> ReadReceipts { get; set; }
     }
+
+    /// <summary>
+    /// ✅ NEW: Tracks who has read each group chat message
+    /// </summary>
+    public class GroupChatMessageReadReceipt
+    {
+        [Key]
+        public int GroupChatMessageReadReceiptId { get; set; }
+
+        [Required]
+        public int GroupChatMessageId { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        public DateTime ReadAt { get; set; }
+
+        // Navigation properties
+        [ForeignKey(nameof(GroupChatMessageId))]
+        public virtual GroupChatMessage Message { get; set; }
+
+        [ForeignKey(nameof(UserId))]
+        public virtual ApplicationUser User { get; set; }
+    }
+
 }

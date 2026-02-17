@@ -8,5 +8,10 @@ namespace OJTManagementSystem.Services.Interfaces
         Task SendPrivateMessageAsync(string senderId, string receiverId, string content);
         Task<List<ChatMessage>> GetMessagesByConversationIdAsync(int conversationId);
         Task<List<Conversation>> GetUserConversationsAsync(string userId);
+
+        // ✅ Read receipt methods
+        Task MarkMessagesAsReadAsync(int conversationId, string userId);
+        Task<int> GetUnreadMessageCountAsync(string userId);
+        Task<int> GetUnreadMessageCountForConversationAsync(int conversationId, string userId);
     }
 }

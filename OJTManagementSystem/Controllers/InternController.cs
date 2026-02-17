@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.VisualBasic;
 using OJTManagementSystem.Dtos;
 using OJTManagementSystem.Helpers;
 using OJTManagementSystem.Models;
@@ -42,6 +44,32 @@ namespace OJTManagementSystem.Controllers
         }
 
         // ============================================================
+        // ACTION FILTER - SET UNREAD MESSAGE COUNT FOR SIDEBAR BADGE
+        // ============================================================
+
+       public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+{
+    try
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            // ✅ Use proper unread count methods from service
+            int unreadPrivate = await _chatService.GetUnreadMessageCountAsync(user.Id);
+            int unreadGroup = await _groupChatService.GetUnreadGroupMessageCountAsync(user.Id);
+
+            ViewBag.UnreadCount = unreadPrivate + unreadGroup;
+        }
+    }
+    catch
+    {
+        ViewBag.UnreadCount = 0;
+    }
+
+    await next();
+}
+
+        // ============================================================
         // DASHBOARD
         // ============================================================
 
@@ -72,6 +100,72 @@ namespace OJTManagementSystem.Controllers
                     certificate: certificate
                 );
 
+                // ============================================================
+                // ✅ FIXED: CHECK FOR NEW MESSAGES EVERY TIME
+                // No more "once per session" blocking!
+                // ============================================================
+                try
+                {
+                    // Get last seen timestamp
+                    var lastSeenStr = HttpContext.Session.GetString($"LastSeen_{user.Id}");
+                    var lastSeenDate = lastSeenStr != null
+                        ? DateTime.Parse(lastSeenStr)
+                        : DateTime.MinValue;
+
+
+                    // ✅ UPDATED: Count only UNREAD messages
+                    var conversations = await _chatService.GetUserConversationsAsync(user.Id);
+                    int newPrivateMessages = 0;
+
+                    foreach (var conv in conversations)
+                    {
+                        var unreadCount = await _chatService.GetUnreadMessageCountForConversationAsync(conv.Id, user.Id);
+                        newPrivateMessages += unreadCount;
+                    }
+
+                    // ✅ UPDATED: Count only UNREAD group messages
+                    var groupChats = await _groupChatService.GetUserGroupChatsAsync(user.Id);
+                    int newGroupMessages = 0;
+
+                    foreach (var group in groupChats)
+                    {
+                        var unreadCount = await _groupChatService.GetUnreadGroupMessageCountForChatAsync(group.GroupChatId, user.Id);
+                        newGroupMessages += unreadCount;
+                    }
+
+                    int totalNew = newPrivateMessages + newGroupMessages;
+
+                    // ✅ SHOW NOTIFICATION IF THERE ARE NEW MESSAGES (every time!)
+                    if (totalNew > 0)
+                    {
+                        string messageText = "";
+
+                        if (newPrivateMessages > 0 && newGroupMessages > 0)
+                        {
+                            messageText = $"You have {newPrivateMessages} new private message{(newPrivateMessages > 1 ? "s" : "")} and {newGroupMessages} new group message{(newGroupMessages > 1 ? "s" : "")}.";
+                        }
+                        else if (newPrivateMessages > 0)
+                        {
+                            messageText = $"You have {newPrivateMessages} new private message{(newPrivateMessages > 1 ? "s" : "")}.";
+                        }
+                        else
+                        {
+                            messageText = $"You have {newGroupMessages} new group chat message{(newGroupMessages > 1 ? "s" : "")}.";
+                        }
+
+                        NotificationHelper.ShowInfoWithLink(
+                            this,
+                            message: messageText,
+                            linkUrl: "/Intern/AllChats",
+                            linkText: "View Messages"
+                        );
+                    }
+                }
+                catch
+                {
+                    // If chat check fails, silently skip — don't break Dashboard
+                }
+
                 return View(model);
             }
             catch (Exception ex)
@@ -81,13 +175,11 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
+
         // ============================================================
         // CHAT & MESSAGING
         // ============================================================
 
-        /// <summary>
-        /// Display all chats (both private and group chats)
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> AllChats()
         {
@@ -96,10 +188,7 @@ namespace OJTManagementSystem.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 var intern = await _internService.GetInternByUserIdAsync(user.Id);
 
-                // Get group chats
                 var groupChats = await _groupChatService.GetUserGroupChatsAsync(user.Id);
-
-                // Get existing private conversations
                 var conversations = await _chatService.GetUserConversationsAsync(user.Id);
                 var privateChats = new List<PrivateChatViewModel>();
 
@@ -131,8 +220,7 @@ namespace OJTManagementSystem.Controllers
                     });
                 }
 
-                // ✅ AUTO-INJECT SUPERVISOR: Show supervisor in private chats
-                // as soon as they're assigned, even with 0 messages exchanged.
+                // Auto-inject supervisor if assigned but no messages yet
                 if (intern != null && !string.IsNullOrEmpty(intern.SupervisorUserId))
                 {
                     bool alreadyInList = privateChats.Any(p => p.OtherUserId == intern.SupervisorUserId);
@@ -159,6 +247,11 @@ namespace OJTManagementSystem.Controllers
                     UnreadMessageCount = 0
                 };
 
+                // ✅ CRITICAL FIX: Mark all messages as "read" - update BOTH timestamps
+                var now = DateTime.Now.ToString("o");
+                HttpContext.Session.SetString($"LastVisitedMessages_{user.Id}", now);
+                HttpContext.Session.SetString($"LastSeen_{user.Id}", now);
+
                 return View(model);
             }
             catch (Exception ex)
@@ -168,9 +261,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Display messages (private chat)
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Messages(string userId = null)
         {
@@ -180,7 +270,6 @@ namespace OJTManagementSystem.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    // Show all conversations
                     var conversations = await _chatService.GetUserConversationsAsync(currentUser.Id);
                     var allMessages = new List<ChatMessageViewModel>();
 
@@ -210,16 +299,11 @@ namespace OJTManagementSystem.Controllers
                         }
                     }
 
-                    var model = new PrivateChatViewModel
-                    {
-                        Messages = allMessages
-                    };
-
+                    var model = new PrivateChatViewModel { Messages = allMessages };
                     return View(model);
                 }
                 else
                 {
-                    // Show specific conversation
                     return RedirectToAction("PrivateChat", new { userId });
                 }
             }
@@ -230,9 +314,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Display a specific private chat conversation
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> PrivateChat(string userId)
         {
@@ -247,11 +328,15 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("AllChats");
                 }
 
-                // Get or create conversation
                 var conversation = await _chatService.GetOrCreatePrivateConversationAsync(currentUser.Id, userId);
                 var messages = await _chatService.GetMessagesByConversationIdAsync(conversation.Id);
 
-                // Get role
+                // ✅ Mark messages as read
+                await _chatService.MarkMessagesAsReadAsync(conversation.Id, currentUser.Id);
+
+                // ✅ ADD THIS LINE: Pass conversation ID to view for SignalR
+                ViewBag.ConversationId = conversation.Id;
+
                 var roles = await _userManager.GetRolesAsync(otherUser);
                 var role = roles.FirstOrDefault() ?? "User";
 
@@ -260,16 +345,17 @@ namespace OJTManagementSystem.Controllers
                     OtherUserId = userId,
                     OtherUserName = otherUser.FullName,
                     OtherUserRole = role,
-                    Messages = messages.Select(m => new ChatMessageViewModel
+                    Messages = messages.Select(msg => new ChatMessageViewModel
                     {
-                        ChatMessageId = m.Id,
-                        SenderId = m.SenderId,
-                        SenderName = m.SenderId == currentUser.Id ? currentUser.FullName : otherUser.FullName,
+                        ChatMessageId = msg.Id,
+                        SenderId = msg.SenderId,
+                        SenderName = msg.SenderId == currentUser.Id ? currentUser.FullName : otherUser.FullName,
                         ReceiverId = userId,
                         ReceiverName = otherUser.FullName,
-                        MessageContent = m.Content,
-                        CreatedAt = m.SentAt,
-                        IsRead = false
+                        MessageContent = msg.Content,
+                        CreatedAt = msg.SentAt,
+                        IsRead = msg.IsRead,
+                        ReadAt = msg.ReadAt
                     }).ToList()
                 };
 
@@ -282,9 +368,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Send a private message
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendPrivateMessage(string receiverId, string messageContent)
@@ -293,28 +376,23 @@ namespace OJTManagementSystem.Controllers
             {
                 if (string.IsNullOrWhiteSpace(messageContent))
                 {
-                    TempData["Error"] = "Message cannot be empty.";
+                    NotificationHelper.ShowError(this, "Message cannot be empty.");
                     return RedirectToAction("PrivateChat", new { userId = receiverId });
                 }
 
                 var user = await _userManager.GetUserAsync(User);
                 await _chatService.SendPrivateMessageAsync(user.Id, receiverId, messageContent);
+                NotificationHelper.NotifyMessageSent(this);
 
-                TempData["Success"] = "Message sent successfully.";
                 return RedirectToAction("PrivateChat", new { userId = receiverId });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return RedirectToAction("PrivateChat", new { userId = receiverId });
             }
         }
 
-     
-
-        /// <summary>
-        /// Display a specific group chat
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GroupChat(int groupChatId)
         {
@@ -322,7 +400,6 @@ namespace OJTManagementSystem.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
 
-                // Check if user is a member
                 var isMember = await _groupChatService.IsMemberAsync(groupChatId, user.Id);
                 if (!isMember)
                 {
@@ -332,7 +409,9 @@ namespace OJTManagementSystem.Controllers
 
                 var groupChat = await _groupChatService.GetGroupChatByIdAsync(groupChatId);
 
-                // Interns don't add members, so we pass empty list
+                // ✅ NEW: Mark group chat as read
+                await _groupChatService.MarkGroupChatAsReadAsync(groupChatId, user.Id);
+
                 ViewBag.AvailableUsers = new List<object>();
 
                 return View(groupChat);
@@ -344,9 +423,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Send a message in a group chat
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendGroupMessage(int groupChatId, string messageContent)
@@ -355,7 +431,7 @@ namespace OJTManagementSystem.Controllers
             {
                 if (string.IsNullOrWhiteSpace(messageContent))
                 {
-                    TempData["Error"] = "Message cannot be empty.";
+                    NotificationHelper.ShowError(this, "Message cannot be empty.");
                     return RedirectToAction("GroupChat", new { groupChatId });
                 }
 
@@ -363,20 +439,17 @@ namespace OJTManagementSystem.Controllers
                 var dto = new SendGroupChatMessageDto { MessageContent = messageContent };
 
                 await _groupChatService.SendMessageAsync(groupChatId, user.Id, dto);
+                NotificationHelper.NotifyMessageSent(this);
 
-                TempData["Success"] = "Message sent successfully.";
                 return RedirectToAction("GroupChat", new { groupChatId });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return RedirectToAction("GroupChat", new { groupChatId });
             }
         }
 
-        /// <summary>
-        /// Add a member to a group chat
-        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddGroupChatMember(int groupChatId, string userId)
@@ -412,11 +485,7 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                var model = new SubmitDtrViewModel
-                {
-                    RecordDate = DateTime.Today
-                };
-
+                var model = new SubmitDtrViewModel { RecordDate = DateTime.Today };
                 return View(model);
             }
             catch (Exception ex)
@@ -452,19 +521,19 @@ namespace OJTManagementSystem.Controllers
 
                 if (intern.SupervisorId == null)
                 {
-                    TempData["Error"] = "Supervisor not assigned yet. Cannot submit DTR.";
+                    NotificationHelper.ShowError(this, "Supervisor not assigned yet. Cannot submit DTR.");
                     return RedirectToAction("Dashboard");
                 }
 
                 var dto = MappingHelper.MapDtrViewModelToDto(model);
                 await _dtrService.SubmitDtrAsync(intern.InternId, dto);
+                NotificationHelper.NotifyDtrSubmitted(this);
 
-                TempData["Success"] = "DTR submitted successfully.";
                 return RedirectToAction("ViewDtrs");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return View(model);
             }
         }
@@ -568,19 +637,19 @@ namespace OJTManagementSystem.Controllers
 
                 if (intern.SupervisorId == null)
                 {
-                    TempData["Error"] = "Supervisor not assigned yet. Cannot submit leave request.";
+                    NotificationHelper.ShowError(this, "Supervisor not assigned yet. Cannot submit leave request.");
                     return RedirectToAction("Dashboard");
                 }
 
                 var dto = MappingHelper.MapLeaveRequestViewModelToDto(model);
                 await _leaveRequestService.SubmitLeaveRequestAsync(intern.InternId, dto);
+                NotificationHelper.NotifyLeaveSubmitted(this);
 
-                TempData["Success"] = "Leave request submitted successfully.";
                 return RedirectToAction("ViewLeaveRequests");
             }
             catch (Exception ex)
             {
-                TempData["Error"] = GetFullErrorMessage(ex);
+                NotificationHelper.ShowError(this, GetFullErrorMessage(ex));
                 return View(model);
             }
         }
@@ -628,6 +697,7 @@ namespace OJTManagementSystem.Controllers
         // ============================================================
         // EVALUATIONS
         // ============================================================
+
         [HttpGet]
         public async Task<IActionResult> ViewEvaluation()
         {
@@ -643,7 +713,6 @@ namespace OJTManagementSystem.Controllers
                 }
 
                 var evaluations = await _evaluationService.GetInternEvaluationsAsync(intern.InternId);
-
                 return View(evaluations);
             }
             catch (Exception ex)
@@ -663,7 +732,7 @@ namespace OJTManagementSystem.Controllers
                 if (evaluation == null)
                 {
                     TempData["Error"] = "Evaluation not found.";
-                    return RedirectToAction("ViewEvaluation"); // ✅ FIXED HERE
+                    return RedirectToAction("ViewEvaluation");
                 }
 
                 return View(evaluation);
@@ -671,13 +740,14 @@ namespace OJTManagementSystem.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = GetFullErrorMessage(ex);
-                return RedirectToAction("ViewEvaluation"); // ✅ FIXED HERE
+                return RedirectToAction("ViewEvaluation");
             }
         }
 
         // ============================================================
         // CERTIFICATE
         // ============================================================
+
         [HttpGet]
         public async Task<IActionResult> ViewCertificate()
         {
@@ -690,7 +760,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                // Get intern profile
                 var intern = await _internService.GetInternByUserIdAsync(user.Id);
                 if (intern == null)
                 {
@@ -698,7 +767,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                // Get certificate
                 var certificate = await _certificateService.GetCertificateByInternIdAsync(intern.InternId);
 
                 if (certificate == null)
@@ -716,9 +784,6 @@ namespace OJTManagementSystem.Controllers
             }
         }
 
-        /// <summary>
-        /// Download intern's certificate as PDF
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> DownloadCertificate()
         {
@@ -731,7 +796,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                // Get intern profile
                 var intern = await _internService.GetInternByUserIdAsync(user.Id);
                 if (intern == null)
                 {
@@ -739,7 +803,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("Dashboard");
                 }
 
-                // Get PDF bytes
                 var pdfBytes = await _certificateService.GetCertificatePdfAsync(intern.InternId);
                 var certificate = await _certificateService.GetCertificateByInternIdAsync(intern.InternId);
 
@@ -749,7 +812,6 @@ namespace OJTManagementSystem.Controllers
                     return RedirectToAction("ViewCertificate");
                 }
 
-                // Return PDF file for download
                 return File(pdfBytes, "application/pdf", certificate.PdfFileName);
             }
             catch (Exception ex)
